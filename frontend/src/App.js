@@ -97,7 +97,7 @@ function App() {
         <Route path="/svg" element={<SvgComponent />} />
 
         <Route path="/gateway" element={<GatewaySvg />} />
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminRoutes />}>
           <Route path="dashboard" element={<DashBoard />} />
           <Route
