@@ -32,10 +32,6 @@ const PORT = process.env.PORT || 8000;
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
-
 app.use(cors());
 
 app.use((req, res, next) => {
@@ -70,6 +66,10 @@ app.use("/api/presentation-form", Route.presentationFormRoute);
 // Serve the sitemap at /sitemap.xml
 app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "public/sitemap.xml"));
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
 // All other requests will be handled by React
