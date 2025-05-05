@@ -1,0 +1,2949 @@
+@import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+}
+
+:root {
+  --black-font: black;
+  --blue-font: #1da1f2;
+  --light-font: #edf5fa;
+  --gray-font: #737373;
+  --white-bg: white;
+  --light-gray-font: lightgray;
+  --transparent-gray: #f6f5f399;
+  --lighter-gray-bg: #f6f5f3;
+  --tabs-font: #727272;
+}
+
+.desktop-navbar {
+  display: block !important;
+}
+
+.absolute-navbar {
+  position: absolute !important;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: transparent; /* Optional: Make it transparent on home page */
+}
+
+.absolute-topbar {
+  position: absolute !important;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: var(--white-bg); /* Optional: Make it transparent on home page */
+}
+
+.fixed-navbar {
+  position: fixed !important;
+  top: 4%;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.fixed-topbar {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-navbar {
+  display: none !important;
+  background-color: var(--white-bg);
+}
+
+.navbar-expand-lg {
+  z-index: 11;
+  position: absolute;
+  width: 100%;
+  background-color: var(--white-bg);
+}
+
+.navbar-collapse {
+  justify-content: end;
+}
+
+.navbar-toggler {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.navbar-toggler:focus,
+.btn-close:focus,
+.select-div .form-select:focus {
+  box-shadow: none !important;
+}
+
+.navbar-nav {
+  background-color: transparent;
+  align-items: center;
+}
+
+.navbar-nav .nav-item {
+  padding: 10px;
+}
+
+.offcanvas-body .navbar-nav .nav-item {
+  padding: 10px;
+}
+
+.navbar-nav .nav-item .nav-link,
+.footer-links .nav-item .nav-link {
+  font-family: "Public Sans", serif;
+  color: var(--black-font);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.8s ease;
+}
+
+.footer-links .nav-item .nav-link {
+  padding: 10px 15px;
+  font-size: 11px;
+}
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-link.show {
+  color: var(--blue-font) !important;
+}
+
+.navbar-nav .nav-link.active .dropdown-toggle::after,
+.navbar-nav .nav-link.show .dropdown-toggle::after {
+  transform: rotate(180deg) !important;
+}
+
+.dropdown-menu {
+  border: none !important;
+  border-radius: 0 !important;
+  /* display: none; */
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  padding: 5px 10px;
+}
+
+.navbar-nav .nav-link.dropdown-toggle::after {
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-link.dropdown-toggle[aria-expanded="true"]::after
+/* .nav-item.dropdown:hover > .nav-link.dropdown-toggle::after  */ {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu .dropdown-item,
+.select-div .form-select option {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+  font-family: "Public Sans", serif;
+  color: var(--black-font);
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  border-bottom: 0.5px solid var(--light-gray-font);
+  transition: all 0.6s ease;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.select-div .form-select option:hover {
+  color: var(--blue-font);
+  border-bottom: 0.5px solid var(--blue-font);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--black-font) !important;
+}
+.offcanvas-body .nav-item .nav-link {
+  color: var(--black-font);
+  transition: color 0.6s ease;
+}
+
+.offcanvas-body .nav-item:hover .nav-link {
+  color: var(--blue-font);
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 62% !important;
+  left: 10% !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: transparent !important;
+}
+
+.dropdown .desktop-dropdown-menu {
+  /* display: block; */
+  box-shadow: inset 0 1px 4px #0000000f;
+  padding-bottom: 0;
+}
+
+.select-div .form-select option {
+  display: block;
+}
+
+/* .dropdown:hover .desktop-dropdown-menu {
+  display: block;
+} */
+
+.login-btn {
+  width: auto;
+  display: block !important;
+}
+
+.login-btn .nav-link {
+  color: var(--white-bg) !important;
+  border: 1px solid var(--blue-font);
+  background-color: var(--blue-font);
+  padding: 20px !important;
+}
+
+/* .login-btn .nav-link:hover {
+  color: var(--blue-font) !important;
+  background-color: transparent;
+} */
+
+.navbar-nav .nav-item.login-btn .nav-link:hover,
+.navbar-nav .nav-item.login-btn .nav-link.show {
+  color: var(--white-bg) !important;
+}
+
+/* HOME */
+
+.home-banner {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.home-banner .video-banner {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.home-banner .video-banner video {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  position: absolute;
+}
+
+.home-banner-content {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 1;
+  /* padding: 40px 20px; */
+}
+
+.home-banner-content .section-title {
+  font-family: "Frank Ruhl Libre", serif;
+  color: var(--white-bg);
+  font-size: 70px;
+  line-height: 80px;
+  margin-bottom: 6%;
+}
+
+.im-a-content-div {
+  position: relative;
+  top: 0%;
+  width: 11%;
+}
+
+.im-a-content-div h5 {
+  background-color: var(--blue-font);
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-family: "Public Sans", serif;
+  color: var(--white-bg);
+  padding: 10px 20px;
+}
+
+.banner-contents {
+  padding: 0 12px;
+}
+
+.banner-contents .col-lg-3 {
+  padding: 0;
+}
+
+.banner-contents .content-div {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background-color: #ffffff1a;
+  border: 1px solid var(--light-gray-font);
+  overflow: hidden;
+  transition: background-color 0.6s ease;
+  width: 100%;
+}
+
+.content-div h2 {
+  font-family: "Frank Ruhl Libre", serif;
+  color: var(--white-bg);
+  text-align: center;
+  letter-spacing: -0.3px;
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 22px;
+  line-height: 32px;
+  display: flex;
+  transition: display 0.6s ease;
+}
+
+.banner-contents .content-div:hover h2 {
+  display: none;
+}
+
+.banner-contents .col-lg-3:hover .content-div {
+  background-color: var(--white-bg);
+}
+
+.banner-contents .content-div .content-para {
+  display: none;
+  position: absolute;
+  bottom: -100%;
+  transition: bottom 0.3s ease;
+  padding: 20px;
+}
+
+.banner-contents .content-div:hover .content-para {
+  top: 0%;
+  display: block;
+  width: 100%;
+}
+
+.content-para .content-title {
+  display: flex;
+  align-items: self-start;
+  justify-content: space-between;
+}
+
+.content-para .content-title i {
+  color: var(--blue-font);
+  font-size: 18px;
+}
+
+.content-para h5 {
+  letter-spacing: -0.3px;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--blue-font);
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.content-para p {
+  color: var(--gray-font);
+  font-size: 14px;
+  line-height: 18px;
+  font-family: "Public Sans", serif;
+}
+
+.content-div-title i {
+  display: none;
+}
+
+/* TOPBAR */
+
+.topbar-section {
+  background: var(--white-bg);
+}
+
+.select-div {
+  display: flex;
+  align-items: center;
+}
+
+.select-div h6 {
+  margin-bottom: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: "Public Sans", serif;
+  color: var(--blue-font);
+}
+
+.select-div .form-select {
+  border: none !important;
+  width: auto;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: "Public Sans", serif;
+  font-weight: 700;
+  color: var(--blue-font);
+}
+
+/* INVESTOR */
+
+.investor-banner-img,
+.investor-banner-img img {
+  position: relative;
+}
+
+.investor-banner-section .slick-slide img,
+.banner-section video {
+  width: 100%;
+  height: 78vh;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
+
+.investor-banner-content {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  display: inline;
+  height: 70vh;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+
+.investor-banner-content .container {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+.banner-subtitle {
+  color: var(--white-bg);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 25px;
+  font-size: 15px;
+  font-family: "Public Sans", serif;
+}
+
+.banner-title {
+  font-family: "Frank Ruhl Libre", serif;
+  color: var(--white-bg);
+  font-size: 50px;
+  font-weight: 400;
+  width: 60%;
+  line-height: 50px;
+}
+
+.banner-btn {
+  border: 1px solid var(--white-bg);
+  padding: 20px;
+  width: auto;
+  display: inline-block;
+  margin-top: 30px;
+  font-size: 15px;
+  line-height: 25px;
+  text-transform: uppercase;
+  color: var(--white-bg);
+  font-weight: 700;
+  text-decoration: none;
+  font-family: "Public Sans", serif;
+  letter-spacing: 2px;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.6s ease;
+}
+
+.banner-btn:hover {
+  background-color: var(--blue-font);
+  color: var(--white-bg);
+  border: 1px solid var(--blue-font);
+}
+
+.banner-btn.blue-btn:hover {
+  background-color: var(--blue-font);
+  color: var(--white-bg);
+}
+
+.banner-btn i {
+  padding-left: 20px;
+}
+
+.section-subtitle {
+  color: var(--blue-font);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  font-family: "Public Sans", serif;
+}
+
+.section-title {
+  color: var(--black-font);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 45px;
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.investor-banner-section,
+.banner-section {
+  padding-bottom: 50px;
+}
+
+.what-we-do-section,
+.facts-section,
+.our-offerings-section,
+.newsletter-section,
+.about-fund-section,
+.founders-note-section,
+.teams-bg-section,
+.teams-section,
+.philosophy-section,
+.our-commitment-section,
+.empowering-growth-section,
+.insights-section,
+.investor-thesis-section,
+.blog-detail-para,
+.disclaimer-para-div,
+.privacy-policy-section,
+.testimonial-section,
+.openings-section,
+.resume-form-section,
+.investor-news-section,
+.features-section,
+.contact-form-section,
+.blog-detail-news {
+  padding: 50px 0;
+  background-color: var(--white-bg);
+}
+
+.insights-section {
+  padding-bottom: 100px;
+}
+
+.investor-news-section {
+  padding-bottom: 100px;
+}
+
+.para {
+  color: var(--gray-font);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  font-family: "Public Sans", serif;
+}
+
+/* FATCS */
+
+.facts-div {
+  border-left: 1px solid var(--light-gray-font);
+  padding-left: 20px;
+}
+
+.facts-title {
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 60px;
+  color: var(--blue-font);
+}
+
+.facts-small {
+  font-size: 12px;
+  line-height: 22px;
+  font-family: "Public Sans", serif;
+  color: var(--gray-font);
+}
+
+.facts-section h5 {
+  font-size: 15px;
+  line-height: 25px;
+  font-family: "Public Sans", serif;
+  margin-top: 20px;
+  color: var(--gray-font);
+}
+
+/* WHY US */
+
+.why-us-section {
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/foriegn-why.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 50px 0;
+  margin: 50px 0;
+  width: 100%;
+  height: 100%;
+  background-position: 0 0, 50% 100%;
+  background-size: auto, cover;
+}
+
+.family-why-section {
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/Indian\ Investor\ -\ Why\ Us.jpg");
+}
+
+.nri-why-section {
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/NRI\ Investor\ -\ Why\ Us\ 1.jpg");
+}
+
+.startup-why-section {
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/Startup\ Founder\ -\ Why\ Us.jpg") !important;
+}
+
+.vision-mission-section {
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/Vision\ Mission.jpg");
+  margin-top: 0;
+}
+
+.why-us-div a {
+  text-decoration: none;
+}
+
+.why-us-div {
+  border: 1px solid transparent;
+  padding: 20px;
+  position: relative;
+  transition: all 0.6s ease;
+  min-height: 700px;
+  overflow: hidden;
+  margin: 100px 0 50px 0;
+}
+.why-us-div-one {
+  min-height: 400px;
+}
+
+.vision-mission-div {
+  min-height: 400px;
+}
+.vision-mission-div-one {
+  min-height: 500px;
+}
+
+/* .why-us-section .col-lg-6:hover .vision-mission-para, */
+.why-us-section .col-lg-4:hover .why-us-div,
+.why-us-section .col-lg-6:hover .why-us-div {
+  border: 1px solid var(--white-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.why-us-content {
+  position: relative;
+  display: block;
+  transition: all 0.6s ease;
+}
+
+.read-more {
+  text-transform: uppercase;
+  color: var(--light-gray-font);
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.read-more i {
+  font-size: 15px;
+}
+
+.why-content-para {
+  position: absolute;
+  top: -110%;
+  left: 0;
+  padding: 20px;
+  transition: all 0.6s ease-in-out;
+}
+.why-content-para-one {
+  position: relative;
+  padding: 20px;
+  transition: all 0.6s ease-in-out;
+}
+
+.vision-mission-para {
+  top: -100%;
+}
+
+.why-content-main-title {
+  width: 100%;
+}
+
+.why-us-section .col-lg-4:hover .why-content-para {
+  top: 0%;
+}
+
+.why-us-section .col-lg-6:hover .vision-mission-para {
+  top: 0%;
+}
+
+.why-us-section .col-lg-4:hover .why-us-content,
+.why-us-section .col-lg-6:hover .why-us-content {
+  display: none;
+}
+
+.why-content-subtitle {
+  color: var(--white-bg);
+}
+
+.why-content-title {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 40px;
+  font-family: "Frank Ruhl Libre", serif;
+  color: var(--white-bg);
+}
+
+.why-para {
+  font-size: 16px;
+  line-height: 26px;
+  margin-top: 35px;
+  color: var(--light-gray-font);
+}
+
+.desktop-row {
+  display: block !important;
+}
+
+.mobile-row {
+  display: none !important;
+}
+
+.accordion {
+  --bs-accordion-bg: transparent !important;
+}
+
+/* .accordion-body,
+.accordion-button:not(.collapsed) {
+  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(20px) !important;
+} */
+
+/* .accordion-item {
+  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(20px) !important;
+} */
+
+.accordion-item:has(.accordion-collapse.show) {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease-in-out;
+}
+
+.accordion-button {
+  color: var(--light-gray-font) !important;
+  padding: 0 20px 20px 14px !important;
+  align-items: flex-end !important;
+}
+
+.why-accordion-button {
+  display: block !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+
+.accordion .accordion-item.why-accordion-item {
+  margin-bottom: 60px;
+}
+
+/* .accordion-header {
+  padding: 10px 15px;
+} */
+
+.accordion-item {
+  margin: 50px 0;
+  color: var(--light-gray-font) !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--light-gray-font) !important;
+  padding: 0 20px 20px 30px !important;
+}
+
+.accordion-button::after {
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: center;
+  width: 16px;
+  height: 16px;
+  content: "" !important; /* Always leave content set for pseudo-elements */
+  margin-left: 2px !important;
+}
+
+.accordion-button.collapsed::after {
+  background-image: url("https://cdn.prod.website-files.com/61a74a0b89162dfadb5acf21/61e3f38c1207771cb26e4491_Plus.svg") !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("https://cdn.prod.website-files.com/61a74a0b89162dfadb5acf21/61e3fded982332b1924b3436_Minus.svg") !important;
+}
+
+.accordion-item.bordered {
+  border: 1px solid var(--white-bg) !important; /* Change the border color as needed */
+  border-radius: 4px;
+}
+
+/* OFFERINGS */
+
+.offerings-title {
+  color: var(--black-font);
+  width: 100%;
+}
+
+.small-para {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.medium-para {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.blue-btn {
+  border-color: var(--blue-font) !important;
+  width: auto;
+  float: right;
+  color: var(--blue-font);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.offerings-div {
+  background-color: var(--transparent-gray);
+  padding: 50px 30px;
+  margin-bottom: 30px;
+}
+
+.our-offerings-section .slick-initialized .slick-slide,
+.news-insights-section .slick-initialized .slick-slide {
+  padding-right: 40px;
+  padding-bottom: 50px;
+}
+
+.strategy-title-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--black-font);
+}
+
+.strategy-title-div h5 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 33px;
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.strategy-funds-div a {
+  text-decoration: none;
+}
+
+.funds-container {
+  border-bottom: 1px solid var(--light-gray-font);
+}
+
+.funds-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  text-decoration: none;
+  color: var(--gray-font);
+  transition: all 0.6s ease;
+}
+
+.funds-div h5 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  font-family: "Public Sans", serif;
+  transition: all 0.6s ease;
+}
+
+/* .funds-div:hover {
+  border-bottom: 1px solid var(--blue-font);
+} */
+
+.funds-div i {
+  color: var(--gray-font);
+  transition: all 0.6s ease;
+}
+
+.funds-div:hover h5,
+.funds-div:hover i {
+  color: var(--blue-font);
+}
+
+.slick-prev,
+.slick-next {
+  top: 100% !important;
+  padding: 30px !important;
+  border: 1px solid var(--black-font) !important;
+  vertical-align: middle !important;
+  transform: translate(0, 0) !important;
+}
+
+.slick-prev {
+  left: 3% !important;
+}
+
+.slick-next {
+  right: 82% !important;
+}
+
+.slick-prev:before {
+  content: url("https://cdn.prod.website-files.com/61a74a0b89162dfadb5acf21/61e5c1f055b7eb34e7fe7368_Frame-1.svg") !important; /* Unicode for '<' */
+}
+.slick-next:before {
+  content: url("https://cdn.prod.website-files.com/61a74a0b89162dfadb5acf21/61e5c314d2641dc913d37b04_arrow-right.svg") !important; /* Unicode for '>' */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* INVESTOR LETTER */
+
+.history-section,
+
+.blog-detail-section,
+/* .investor-letter-section, */
+.startup-news-section,
+.funds-article-section,
+.investment-philosophy-section,
+.factsheet-section, .outlook-section ,.investor-letter-section {
+  padding: 50px 0;
+  background-color: var(--lighter-gray-bg);
+}
+
+.funds-features-section {
+  background-color: var(--lighter-gray-bg);
+}
+
+.funds-article-section {
+  padding-bottom: 100px;
+}
+
+.startup-news-section,
+.funds-article-section,
+.investment-philosophy-section,
+.factsheet-section,
+.investor-letters-section,
+.outlook-section {
+  margin: 50px 0;
+}
+
+.investor-letter-section a,
+.investor-letters-section a {
+  text-decoration: none;
+}
+
+.investor-letter-section a h3,
+.investor-letters-section a h3 {
+  color: var(--black-font);
+}
+
+.letter-div {
+  background-color: var(--white-bg);
+  padding: 20px;
+  border-left: 2px solid var(--blue-font);
+  border-top: 1px solid var(--lighter-gray-bg);
+  border-right: 1px solid var(--lighter-gray-bg);
+  border-bottom: 1px solid var(--lighter-gray-bg);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  transition: all 0.6s ease;
+}
+
+.letter-div:hover {
+  border-top: 1px solid var(--blue-font);
+  border-right: 1px solid var(--blue-font);
+  border-bottom: 1px solid var(--blue-font);
+}
+
+.letter-options i {
+  font-size: 22px;
+  color: var(--blue-font);
+  padding-right: 20px;
+  transition: color 0.6s ease;
+}
+
+.letter-options i:hover {
+  color: var(--black-font);
+}
+
+/* NEWS & INSIGHTS */
+
+.fund-info-section {
+  background-color: var(--lighter-gray-bg);
+  margin-top: 50px;
+  padding: 50px 0;
+}
+
+.news-img-div,
+.news-img {
+  position: relative;
+}
+
+.news-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.news-type {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--white-bg);
+  padding: 10px;
+}
+
+.news-type h6 {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.news-content-div {
+  background-color: var(--white-bg);
+  padding: 30px;
+  border: 1px solid var(--light-gray-font);
+  transition: all 0.6s ease;
+}
+
+.news-content-div h5 {
+  background-color: var(--lighter-gray-bg);
+  border-left: 1px solid var(--blue-font);
+  display: inline;
+  padding: 10px;
+  font-family: "Public Sans", serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--blue-font);
+}
+
+.news-content-div h3,
+.team-content .team-name {
+  font-size: 26px;
+  line-height: 30px;
+  color: var(--black-font);
+  transition: all 0.6s ease;
+}
+
+.team-content .team-name {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.team-content .team-designation {
+  font-family: "Public Sans", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  color: var(--gray-font);
+}
+
+.news-content-div h3 {
+  min-height: 183px;
+}
+
+.news-content-div h6 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: "Public Sans", serif;
+  line-height: 22px;
+  color: var(--black-font);
+  transition: all 0.6s ease;
+}
+
+.news-div:hover .news-content-div {
+  border: 1px solid var(--blue-font);
+}
+
+.news-div:hover .news-content-div h3,
+.news-div:hover .news-content-div h6 {
+  color: var(--blue-font);
+}
+
+/* NEWSLETTER */
+
+.newsletter-section {
+  background-color: var(--lighter-gray-bg);
+  padding: 100px 0;
+}
+
+.newsletter-div .form-control {
+  padding: 20px;
+  border: 1px solid var(--light-gray-font);
+  border-radius: 0;
+}
+
+.newsletter-div .form-control::placeholder {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  text-transform: uppercase;
+  font-family: "Public Sans", serif;
+  letter-spacing: 1px;
+  color: var(--gray-font);
+}
+
+.newsletter-div .form-control:focus {
+  box-shadow: none !important;
+  border: 1px solid var(--blue-font) !important;
+}
+
+.blue-title {
+  color: var(--blue-font);
+  width: 100%;
+}
+
+.subscribe-para {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.subscribe-para a {
+  color: var(--blue-font);
+}
+
+.form-control.subscribe-control:focus {
+  background-color: var(--lighter-gray-bg);
+}
+
+/* CONTACT US */
+
+.contact-us-section {
+  padding: 100px 0;
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/Get\ in\ Touch.jpg");
+  background-position: 0 0, 50%;
+  background-repeat: no-repeat;
+  height: 90vh;
+  display: inline-block;
+  width: 100%;
+  background-size: auto, cover;
+}
+
+.contact-para {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--white-bg);
+}
+
+/* MARKET FUND */
+
+.banner-img-div,
+.other-banner-div .banner-img-div img {
+  position: relative;
+}
+
+.banner-img-div img,
+.other-banner-div {
+  height: 78vh;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+.bann-img-height img {
+  height: 78vh;
+}
+
+.other-banner-div {
+  background-color: var(--lighter-gray-bg);
+  filter: brightness(1);
+  margin-bottom: 50px;
+  height: 50vh;
+}
+
+.other-banner-content-div .banner-title {
+  color: var(--black-font);
+}
+
+.banner-content-div {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+
+.banner-content-div a {
+  text-decoration: none;
+}
+
+.banner-para {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--white-bg);
+  width: 60%;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.small-section-title {
+  font-size: 33px;
+  line-height: 43px;
+}
+
+.investment-solution-section {
+  /* padding-top: 50px; */
+  padding-left: 6%;
+}
+
+.investment-solution-img,
+.investment-tab-content {
+  background-color: var(--lighter-gray-bg);
+  height: 100%;
+}
+
+.investment-solution-img img {
+  padding-top: 5%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.tab-links {
+  padding-left: 20%;
+}
+
+.tab-links a {
+  text-decoration: none;
+}
+
+.tab-links a h4 {
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--tabs-font);
+  font-weight: 400;
+  border-bottom: 1px solid var(--light-gray-font);
+  padding: 15px 0;
+}
+
+.investment-tab-content {
+  padding-top: 3%;
+  padding-right: 20%;
+  padding-left: 5%;
+  display: flex;
+}
+
+.tabs-content-div {
+  display: inline-block;
+  width: 100%;
+}
+
+.tabs-content-div h3 {
+  color: var(--dim-grey-2);
+  font-family: "Public Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.tabs-btn {
+  float: left;
+}
+
+/* FUNDS */
+
+.industries-filter-div .form-select,
+.industries-filter-div .search-div {
+  width: 100% !important;
+  border-radius: 0 !important;
+  padding: 20px 40px 20px 20px !important;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--blue-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.industries-filter-div .search-div {
+  border: 1px solid #dee2e6;
+  padding: 20px !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.industries-filter-div .form-control {
+  border: none;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--blue-font);
+}
+
+.industries-filter-div .form-select:focus,
+.industries-filter-div .form-control:focus {
+  box-shadow: none !important;
+  color: var(--blue-font);
+}
+
+.industries-filter-div .search-div .form-control {
+  border: none;
+  background-color: transparent;
+}
+
+.industries-filter-div .search-div .form-control:focus {
+  background-color: transparent !important;
+}
+.industries-filter-div .form-control::placeholder {
+  color: var(--gray-font);
+}
+
+.industires-logo-div,
+.industires-logo-div img {
+  position: relative;
+}
+
+.industires-logo-div img {
+  aspect-ratio: 4/2;
+  object-fit: contain;
+  margin: 0 15px;
+  mix-blend-mode: color-burn;
+}
+
+.industires-logo-div .entre-img-one {
+  max-width: 85%;
+}
+
+.industires-logo-div .portfolio-img {
+  mix-blend-mode: normal;
+  margin: 0;
+  padding: 0 10px;
+}
+/* 
+.industires-logo-div img {
+  top: 0;
+  transition: top 0.6s ease;
+}
+
+.industires-logo-div:hover img {
+  top: -100%;
+} */
+
+.industires-logo-div {
+  overflow: hidden;
+  height: 150px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.industries-content {
+  position: absolute;
+  bottom: -150%;
+  transition: bottom 0.6s ease;
+  height: 150px;
+}
+
+.industires-logo-div:hover .industries-content {
+  bottom: 0;
+}
+
+.modal-body img {
+  width: 50%;
+  height: 100px;
+  object-fit: contain;
+}
+
+.modal-title {
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 30px !important;
+  line-height: 40px;
+}
+
+.modal-open {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+.features-section,
+.fund-info-section {
+  margin: 50px 0;
+}
+
+.features-section .row,
+.fund-info-section .row,
+.our-commitment-section .row,
+.empowering-growth-section .row,
+.investment-philosophy-section .row,
+.funds-features-section .row {
+  position: relative;
+}
+
+.feature-title-div,
+.fund-title-div,
+.commitment-title-div,
+.empowering-title-div,
+.investment-philosophy-title-div,
+.investor-thesis-section .feature-title-div {
+  position: sticky;
+  top: 20%;
+  padding: 10px;
+}
+
+.features-section .row .col-lg-5,
+.fund-info-section .row .col-lg-5,
+.our-commitment-section .row .col-lg-4,
+.empowering-growth-section .row .col-lg-4,
+.investment-philosophy-section .row .col-lg-5,
+.funds-features-section .row .col-lg-4,
+.investor-thesis-section .row .col-lg-5 {
+  position: sticky;
+  top: 9%;
+  background-color: var(--lighter-gray-bg);
+  padding: 20px 0;
+  z-index: 1;
+}
+
+.features-section .row .col-lg-5,
+.our-commitment-section .row .col-lg-4,
+.empowering-growth-section .row .col-lg-4,
+.investor-thesis-section .row .col-lg-5 {
+  background-color: var(--white-bg);
+}
+
+.funds-features-section .row .col-lg-5 {
+  background-color: var(--lighter-gray-bg);
+}
+
+.investment-philosophy-section .row .col-lg-5 {
+  background-color: var(--lighter-gray-bg);
+}
+
+.features-content-div .single-feature,
+.investment-philosophy-section .single-feature,
+.fund-content-div .single-fund {
+  display: flex;
+  align-items: baseline;
+  justify-content: start;
+  border-bottom: 1px solid var(--light-gray-font);
+  margin-bottom: 20px;
+}
+
+.single-feature span,
+.single-fund span,
+.single-history span,
+.year-tab-links a span,
+.blog-para-div span,
+.single-disclaimer-para span {
+  background-color: var(--blue-font, blue);
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  margin-right: 20px;
+  transform: rotate(45deg);
+}
+
+.single-feature.single-subfeature:last-child {
+  border-bottom: none;
+}
+
+.single-feature.single-subfeature .small-pointer {
+  height: 8px;
+  width: 8px;
+  transform: rotate(0);
+}
+
+.sticky-contact-section {
+  z-index: 999;
+  /* position: sticky; */
+  inset: auto 0% 0%;
+  background-color: var(--lighter-gray-bg);
+  padding: 20px 0;
+}
+
+.sticky-contact-section h4,
+.letter-div h3,
+.philosophy-section .section-title {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 35px;
+  font-family: "Frank Ruhl Libre", serif;
+  transition: all 0.6s ease;
+  color: var(--black-font);
+}
+
+.letter-div:hover h3 {
+  color: var(--blue-font);
+}
+
+.factsheet-content-div h4 {
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.disclosure-letter-div {
+  background-color: var(--lighter-gray-bg);
+}
+
+/* ABOUT */
+
+.investment-journey-section {
+  padding: 50px 0;
+}
+
+.investment-journey-section .section-title i,
+.founders-note-section .banner-title i {
+  color: var(--blue-font);
+  font-size: 40px;
+}
+
+.journey-text,
+.founders-text {
+  position: relative;
+}
+
+.journey-text .journey-left-quote {
+  position: absolute;
+  top: -13%;
+  left: 0;
+}
+
+.journey-text .journey-right-quote {
+  position: absolute;
+  bottom: -10%;
+  right: 0;
+}
+
+.founders-text .founders-left-quote {
+  position: absolute;
+  left: 0;
+  top: -15%;
+}
+
+.founders-text .founders-right-quote {
+  position: absolute;
+  right: 15%;
+  bottom: 0%;
+}
+
+.founders-name {
+  color: var(--gray-font);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  font-family: "Public Sans", sans-serif;
+  margin-top: 30px;
+}
+
+.history-section {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: transparent !important;
+}
+
+.history-row {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.year-tab-links {
+  display: flex;
+  flex-direction: column;
+  mask-image: linear-gradient(
+    transparent,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    transparent,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  flex-direction: column;
+  height: 300px;
+  display: flex;
+  position: relative;
+  overflow: auto;
+  margin-top: 40px;
+}
+
+.year-tab-links::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.year-tab-links a {
+  vertical-align: top;
+  text-align: left;
+  cursor: pointer;
+  padding: 15px 30px;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.year-tab-links a h4 {
+  color: var(--gray-font);
+  font-family: "Public Sans", sans-serif;
+  font-size: 20px;
+}
+
+.year-tab-links a.active h4 {
+  font-family: "Frank Ruhl Libre", serif;
+  color: var(--blue-font);
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  font-family: Frank Ruhl Libre, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.year-tab-links a span {
+  display: none;
+}
+
+.year-tab-links a.active span {
+  display: block;
+}
+
+.history-content-div .history-title {
+  color: #0000001a;
+  font-size: 3.75rem;
+  font-weight: 400;
+  line-height: 1.68333;
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.history-content {
+  width: 80%;
+}
+
+.history-content .single-history {
+  display: flex;
+  align-items: baseline;
+}
+
+.single-history .history-para {
+  color: var(--black-font);
+}
+
+.teams-bg-section img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-div {
+  /* padding: 20px; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid #000000;
+}
+
+.small-team-div {
+  height: 350px;
+}
+.img-team-one {
+  height: 130px;
+  margin: 10px 0px;
+}
+
+.team-div img {
+  position: relative;
+}
+
+.team-title-div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.team-title-div i {
+  color: var(--blue-font);
+  transition: all 0.6s ease;
+  font-size: 25px;
+}
+
+.company-link {
+  color: var(--blue-font);
+  text-decoration: none;
+  transition: all 0.6s ease;
+}
+
+.company-link:hover {
+  text-decoration: underline;
+}
+
+.team-title-div i:hover {
+  color: var(--black-font);
+}
+
+.team-content {
+  padding: 10px 20px;
+  width: 100%;
+  /* background-color: var(--lighter-gray-bg); */
+  /* border-bottom: 1px solid var(--black-font); */
+  transition: all 0.6s ease;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  /* border: 0.5px solid var(--light-gray-font); */
+  min-height: 132px;
+}
+
+.team-content .section-subtitle {
+  font-size: 14px;
+}
+
+.small-team-content {
+  width: 80%;
+}
+
+.philosophy-section img {
+  height: 500px;
+  object-fit: cover;
+}
+
+/* OUR IMPACT */
+
+.our-commitment-tabs {
+  border-bottom: 1px solid var(--gray-font);
+  margin: 20px 0;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.our-commitment-tabs a {
+  padding-right: 20px;
+  text-decoration: none;
+  display: inline-flex;
+  text-align: center;
+}
+
+.our-commitment-tabs a h4 {
+  color: #000000;
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  border-bottom: 3px solid transparent;
+  transition: all 0.6s ease;
+}
+
+.our-commitment-tabs a.active h4 {
+  border-bottom: 3px solid var(--blue-font);
+  color: var(--blue-font);
+}
+
+.commitment-content-div .commitment-title {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--gray-font);
+  font-family: "Public Sans", serif;
+}
+
+.commitment-content-div {
+  width: 70%;
+}
+
+.commitment-para {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.empowering-point {
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border-left: 2px solid var(--blue-font);
+  justify-content: start;
+  margin: 20px 0;
+}
+
+.empowering-point-title {
+  color: var(--blue-font);
+}
+
+/* INSIGHTS */
+
+.items-available-text,
+.clear-filters-text {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+.clear-filters-text {
+  color: var(--gray-font);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gray-font);
+  padding: 0;
+}
+
+.insights-section a {
+  text-decoration: none;
+}
+/* CONTACT */
+
+.contact-form-section {
+  margin-bottom: 50px;
+}
+
+form .form-label {
+  color: var(--gray-font);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+form .form-control,
+form .form-select {
+  padding: 15px 20px;
+  background-color: transparent;
+  border: 1px solid var(--light-gray-font);
+  border-radius: 0;
+  transition: all 0.6s ease;
+}
+
+form .form-control:focus,
+form .form-select:focus {
+  border: 1px solid var(--blue-font);
+  box-shadow: none !important;
+}
+
+form .form-control::placeholder,
+form .form-select::placeholder {
+  font-style: italic;
+  color: var(--light-gray-font);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+form .form-label span {
+  font-style: italic;
+  color: var(--light-gray-font);
+}
+
+.location-section {
+  padding: 50px 0 100px 0;
+}
+
+.single-social-media {
+  display: flex;
+  align-items: baseline;
+  justify-content: start;
+  text-decoration: none;
+}
+
+.single-social-media i {
+  color: var(--gray-font);
+  transition: all 0.6s ease;
+}
+
+.single-social-media:hover i,
+.single-social-media:hover p {
+  color: var(--blue-font);
+}
+
+.single-social-media p {
+  padding-left: 20px;
+  color: var(--gray-font);
+  transition: all 0.6s ease;
+}
+
+.location-map {
+  display: inline-flex;
+  width: 100%;
+}
+/* BLOG DETAIL */
+
+.back-div {
+  text-decoration: none;
+}
+
+.back-div i {
+  color: var(--gray-font);
+}
+
+.blog-detail-section .news-content-div {
+  background-color: transparent;
+}
+
+.news-blog {
+  font-size: 20px;
+}
+
+/* .news-content-div h6 {
+  font-size: 20px;
+  font-style: italic;
+} */
+
+.blog-detail-title {
+  font-size: 50px;
+  line-height: 60px;
+}
+
+.blog-para {
+  color: var(--black-font);
+  text-align: justify;
+}
+
+.key-takeaways {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.social-media-blog .fa-brands {
+  margin-right: 20px !important;
+  color: var(--light-gray-font) !important;
+  font-size: 40px !important;
+  border-radius: 0 !important;
+}
+
+.subscribe-text {
+  font-size: 25px;
+  line-height: 35px;
+  margin-top: 20px;
+  color: var(--blue-font);
+}
+
+.subscribe-blog-btn {
+  float: left;
+}
+
+/* DISCLAIMER */
+
+.single-disclaimer-para {
+  display: flex;
+  align-items: baseline;
+}
+
+/* CAREER */
+
+.life-section {
+  padding: 50px 0;
+}
+
+.life-section .col-lg-5 {
+  position: relative;
+}
+
+.top-bottom-shadow {
+  position: absolute;
+  z-index: 5;
+  background-image: linear-gradient(#fff0 70%, #fff),
+    linear-gradient(#fff, #fff0 30%);
+  inset: 0%;
+}
+
+.verticle-slider {
+  position: absolute;
+}
+
+.employee-speak-section {
+  mix-blend-mode: multiply;
+  background-image: linear-gradient(#00000059, #00000059),
+    url("../public/images/banners/621d7caf5e74f101837f2a9a_Employees\ Speak\ 2.webp");
+  background-position: 0 0, 0 0;
+  background-size: auto, cover;
+  background-attachment: scroll, scroll;
+  position: relative;
+  padding: 50px 0;
+  margin-bottom: 50px;
+  height: 90vh;
+}
+
+.employee-speak-section .container {
+  position: absolute;
+  display: block;
+  left: 90%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+}
+
+.employee-speak-div {
+  border: 1px solid var(--white-bg);
+  width: 50%;
+  display: inline-block;
+  padding: 40px 20px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.employee-speak-div .banner-title {
+  width: 100%;
+}
+
+.employee-speak-div .banner-para {
+  font-size: 16px;
+  width: 100%;
+  font-weight: 400;
+}
+
+.life-section .slick-slide {
+  padding-right: 20px;
+}
+
+.testimonial-div {
+  background-color: var(--lighter-gray-bg);
+}
+
+.testimonial-img-div {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+}
+
+.testimonial-img-div img {
+  height: 150px;
+  width: 180px;
+  object-fit: cover;
+}
+
+.testimonial-data {
+  padding: 20px;
+}
+
+.testimonial-data .section-title {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.testimonial-section .slick-slide {
+  padding-right: 30px;
+  padding-bottom: 100px;
+}
+
+.testimonial-content-div {
+  height: 280px;
+  overflow: auto;
+  mask-image: linear-gradient(black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(black 80%, transparent 100%);
+}
+
+.testimonial-content-div::-webkit-scrollbar {
+  width: 2px; /* Adjust width */
+}
+
+.testimonial-content-div::-webkit-scrollbar-thumb {
+  background: var(--light-gray-font); /* Scrollbar color */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.testimonial-content-div::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-font); /* Darker on hover */
+}
+
+.culture-values-section {
+  background-color: var(--light-gray-font);
+  padding: 50px 0;
+  margin: 50px 0;
+}
+
+.values-para {
+  color: var(--black-font);
+}
+
+.values-row img {
+  width: 60px;
+}
+
+.values-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.values-div h6 {
+  font-size: 18px;
+  color: var(--black-font);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 20px 0;
+}
+
+.values-div span {
+  width: 15px;
+  background-color: var(--black-font);
+  height: 1px;
+}
+
+.send-cv-div .cv-title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.cv-contact-btn {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Public Sans", serif;
+  text-decoration: none;
+  color: var(--gray-font);
+  padding-bottom: 10%;
+  border-bottom: 1px solid var(--black-font);
+  display: block;
+  transition: all 0.6s ease;
+}
+
+.cv-contact-btn:hover {
+  color: var(--blue-font);
+  border-bottom: 1px solid var(--blue-font);
+}
+
+.thankyou-msg {
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--blue-font);
+}
+
+.text-danger {
+  font-family: "Public Sans", serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+/* FOOTER */
+
+.footer {
+  background-color: var(--blue-font);
+  padding: 50px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+/* .footer-links .nav-item {
+  padding-right: 20px;
+} */
+
+.footer-links .nav-item .nav-link {
+  color: var(--white-bg);
+}
+
+.footer-links .nav-item:hover .nav-link {
+  color: var(--black-font);
+}
+
+.privacy-policy-row {
+  margin-top: 50px !important;
+  padding-top: 20px;
+  border-top: 2px solid var(--white-bg);
+}
+
+.justify-para {
+  text-align: justify;
+}
+
+.social-icons-div a {
+  padding-right: 15px;
+  color: var(--white-bg);
+  font-size: 18px;
+  transition: all 0.6s ease;
+}
+
+.social-icons-div a:hover {
+  color: var(--black-font);
+}
+
+.location-links a {
+  display: flex;
+  align-items: baseline;
+  color: var(--white-bg);
+  text-decoration: none;
+  font-family: "Public Sans", serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.location-links a i {
+  padding-right: 10px;
+  color: var(--white-bg);
+  transition: all 0.6s ease;
+}
+
+.location-links a:hover i {
+  color: var(--black-font);
+}
+
+.para-txt {
+  color: gray;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  font-family: "Public Sans", serif;
+}
+
+/* accordin */
+.accordion .accordion-button::after {
+  display: none !important;
+}
+
+/* Custom accordion button */
+.accordion .accordion-item {
+  margin: 20px 0;
+  /* border-bottom: 1px solid #000000!important; */
+}
+.accordion .custom-accordion-button {
+  background: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.accordion .accord-title-one {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-font);
+}
+
+/* .accordion .accordion-button:not(.collapsed) {
+  padding: 0px!important;
+}
+#btn-one{
+  padding: 0px 20px 20px 15px!important;
+} */
+.accordion .accordion-header {
+  padding-bottom: 15px;
+}
+/* Custom Arrow */
+.accordion .custom-arrow {
+  transition: transform 0.3s ease;
+  color: var(--gray-font);
+}
+
+.accordion .rotate {
+  transform: rotate(180deg);
+}
+.accordion .accordion-body {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray-font);
+}
+.sim-bg-ch {
+  background-color: #ffff;
+}
+
+.testimonial-video-section {
+  padding: 50px 0 70px 0;
+}
+
+.testimonial-video-section iframe {
+  height: 500px;
+}
+
+.history-line-chart {
+  /* height: auto;
+  overflow: visible; */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1300px) {
+  .news-content-div h3 {
+    min-height: 150px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .navbar-nav .nav-item {
+    padding: 10px 12px;
+  }
+
+  .im-a-content-div {
+    width: 15%;
+  }
+
+  .why-us-section {
+    height: auto;
+  }
+
+  .why-us-div {
+    min-height: 800px;
+  }
+
+  .vision-mission-div {
+    min-height: 500px;
+  }
+
+  .fixed-navbar {
+    top: 2%;
+  }
+  .news-content-div h3 {
+    min-height: 180px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .desktop-navbar {
+    display: none !important;
+  }
+
+  .mobile-navbar {
+    display: block !important;
+  }
+
+  /* .offcanvas-header {
+    position: relative;
+    top: 0;
+  }
+
+  .offcanvas-body {
+    position: relative;
+    top: 2%;
+  } */
+
+  .navbar-nav {
+    align-items: start;
+  }
+  .select-div .form-select {
+    width: 85%;
+    padding: 20px;
+  }
+
+  /* .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  } */
+
+  .home-banner-content .section-title {
+    font-size: 64px;
+    line-height: 64px;
+  }
+
+  .im-a-content-div {
+    width: 18%;
+  }
+
+  .content-div-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .content-div-title i {
+    color: var(--white-bg);
+    font-size: 20px;
+    display: block;
+  }
+
+  .banner-contents .content-div {
+    height: 100px;
+  }
+
+  .banner-title {
+    width: 70%;
+  }
+
+  .content-div h2 {
+    margin: 0;
+    max-width: 50%;
+    text-align: left;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .banner-contents .col-lg-4:hover .content-div {
+    background-color: transparent;
+  }
+
+  .im-a-content-div h5 {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .banner-contents .content-div:hover h2 {
+    display: block;
+  }
+
+  .banner-contents .content-div:hover .content-para {
+    display: none;
+  }
+
+  .dropdown-menu .dropdown-item {
+    border-bottom: 1px solid transparent;
+  }
+
+  .why-content-para {
+    position: relative;
+    padding: 10px;
+  }
+
+  .why-para {
+    color: var(--white-bg);
+  }
+
+  .desktop-row {
+    display: none !important;
+  }
+
+  .mobile-row {
+    display: block !important;
+  }
+
+  .contact-us-section,
+  .why-us-section {
+    height: auto;
+  }
+
+  .slick-next {
+    right: 75% !important;
+  }
+
+  .blue-btn {
+    float: left;
+  }
+
+  .footer-links .nav-item {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+
+  .investment-solution-content,
+  .tab-links,
+  .investment-solution-section {
+    padding-left: 0;
+  }
+
+  .investment-solution-content {
+    padding-top: 0;
+  }
+  .investment-solution-img img {
+    padding-top: 0;
+  }
+
+  .tab-links {
+    padding: 20px 0;
+  }
+
+  .investment-tab-content {
+    padding: 6%;
+  }
+
+  .industries-filter-div .form-select,
+  .industries-filter-div .search-div {
+    width: 40% !important;
+  }
+
+  .industries-content {
+    position: relative;
+    height: auto;
+  }
+
+  .industires-logo-div {
+    display: block;
+    height: auto;
+  }
+
+  .industries-content .small-para {
+    font-size: 14px;
+    line-height: 24px;
+    padding-top: 10px;
+    text-align: left;
+  }
+
+  .year-tab-links {
+    flex-direction: row;
+    height: auto;
+    align-items: center;
+  }
+
+  .year-tab-links a {
+    padding: 15px;
+  }
+
+  .year-tab-links .nav {
+    flex-wrap: initial;
+  }
+
+  .history-content {
+    width: 100%;
+  }
+
+  .year-tab-links {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .life-section {
+    margin-bottom: 50px;
+  }
+
+  .employee-speak-section {
+    height: 50vh;
+  }
+  .employee-speak-section .container {
+    left: 50%;
+  }
+  .employee-speak-div {
+    width: 100%;
+  }
+
+  .team-div {
+    padding: 20px;
+  }
+
+  .values-div {
+    margin: 20px 0;
+  }
+
+  .footer-links .nav-item {
+    padding: 0;
+  }
+
+  .tabs-content-div {
+    /* padding-top: 20px; */
+    padding: 20px 40px 0 40px;
+  }
+
+  .col-lg-3:hover .content-div-title h2,
+  .col-lg-3:hover .content-div-title i {
+    color: var(--blue-font);
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .home-banner,
+  .home-banner .video-banner,
+  .home-banner .video-banner video,
+  .home-banner-content {
+    height: 95vh;
+  }
+
+  .home-banner-content .section-title {
+    font-size: 45px;
+    line-height: 45px;
+  }
+
+  .banner-title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .banner-para {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .investor-banner-section .slick-slide img,
+  .banner-section video {
+    height: 50vh;
+  }
+
+  .banner-para {
+    width: 100%;
+  }
+
+  .para,
+  .small-para {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .what-we-do-section,
+  .facts-section,
+  .our-offerings-section,
+  .startup-news-section .newsletter-section,
+  .about-fund-section,
+  .industries-portfolio-section,
+  .industries-portfolio-section,
+  .founders-note-section,
+  .teams-bg-section,
+  .teams-section,
+  .philosophy-section,
+  .our-commitment-section,
+  .empowering-growth-section,
+  .insights-section,
+  .investor-letter-section,
+  .investment-philosophy-section,
+  .factsheet-section,
+  .investor-thesis-section,
+  .investor-banner-section,
+  .banner-section,
+  .investment-journey-section,
+  .why-us-section,
+  .blog-detail-para,
+  .employee-speak-section,
+  .life-section,
+  .testimonial-section,
+  .culture-values-section,
+  .openings-section,
+  .resume-form-section,
+  .blog-detail-news,
+  .outlook-section,
+  .investor-news-section,
+  .tabs-content-div {
+    padding: 30px 0;
+  }
+
+  .why-us-section,
+  .culture-values-section,
+  .startup-news-section,
+  .outlook-section,
+  .why-us-section {
+    margin: 30px 0;
+  }
+
+  .newsletter-section {
+    padding-bottom: 60px;
+  }
+
+  .investment-solution-section {
+    padding-top: 30px;
+  }
+
+  .history-section {
+    margin-top: 30px;
+  }
+
+  .industries-filter-div .form-select,
+  .industries-filter-div .search-div {
+    width: 100% !important;
+  }
+
+  .banner-content-div {
+    top: 50%;
+  }
+
+  .banner-img-div img {
+    height: 50vh;
+  }
+  .bann-img-height img {
+    height: 50vh;
+  }
+
+  .investor-banner-content {
+    height: 50vh;
+    top: 50%;
+  }
+
+  .why-us-section {
+    margin-top: 0;
+  }
+  .our-commitment-tabs {
+    border-bottom: none;
+  }
+  /* .our-commitment-tabs a{
+    display: block;
+  } */
+  .our-commitment-tabs a h4 {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content-div h2 {
+    max-width: 75%;
+  }
+
+  .section-title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .home-banner-content {
+    margin: 0 auto;
+    padding-right: 20px;
+  }
+
+  .banner-contents {
+    padding: 0 14px;
+  }
+
+  .im-a-content-div {
+    width: 25%;
+    padding-left: 2px;
+  }
+
+  .im-a-content-div h5 {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .home-banner-content .section-title {
+    margin-bottom: 14%;
+    padding-left: 2px;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .banner-title {
+    width: 100%;
+  }
+
+  .slick-next {
+    right: 65% !important;
+  }
+
+  .what-we-do-section,
+  .facts-section,
+  .our-offerings-section,
+  .startup-news-section,
+  .newsletter-section,
+  .about-fund-section,
+  .industries-portfolio-section,
+  .industries-portfolio-section,
+  .founders-note-section,
+  .teams-section,
+  .philosophy-section,
+  .our-commitment-section,
+  .empowering-growth-section,
+  .insights-section,
+  .investor-letter-section,
+  .investment-philosophy-section,
+  .factsheet-section,
+  .investor-thesis-section,
+  .investment-journey-section,
+  .why-us-section,
+  .blog-detail-para,
+  .history-section,
+  .investor-letters-section,
+  .life-section,
+  .testimonial-section,
+  .culture-values-section,
+  .openings-section,
+  .resume-form-section,
+  .outlook-section,
+  .investor-news-section,
+  .tabs-content-div {
+    padding: 30px 15px;
+  }
+
+  .tabs-content-div {
+    /* padding-top: 20px; */
+    padding: 20px 20px 0 20px;
+  }
+
+  .investor-banner-content {
+    padding: 0 15px;
+  }
+
+  .investment-solution-content {
+    padding: 0 10px;
+  }
+
+  .contact-form-section,
+  .location-section,
+  .sticky-contact-section,
+  .openings-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* .investment-solution-section {
+    padding: 0 20px;
+  } */
+
+  .banner-content-div {
+    padding: 0 20px;
+  }
+
+  .journey-text,
+  .founders-text {
+    font-size: 25px;
+    line-height: 35px;
+  }
+
+  .newsletter-section {
+    padding-bottom: 60px;
+  }
+
+  .journey-text .journey-left-quote {
+    top: -20%;
+  }
+
+  .founders-text .founders-right-quote {
+    right: 0;
+  }
+
+  .news-content-div h3 {
+    min-height: 0;
+  }
+
+  .team-div {
+    height: 170px;
+  }
+
+  .our-offerings-section .slick-initialized .slick-slide,
+  .news-insights-section .slick-initialized .slick-slide,
+  .testimonial-section .slick-slide {
+    padding-right: 0;
+  }
+
+  .factsheet-content-div h4 {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .testimonial-img-div {
+    display: block;
+    padding: 20px 0 0 0;
+  }
+
+  .testimonial-data {
+    padding: 5px 10px;
+  }
+
+  .testimonial-img-div img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .philosophy-section img {
+    height: 300px;
+  }
+
+  .team-content {
+    min-height: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home-banner-content {
+    bottom: 10%;
+  }
+
+  .slick-next {
+    right: 50% !important;
+  }
+
+  .investment-tab-content {
+    padding: 4% 3%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .im-a-content-div {
+    width: 28%;
+  }
+
+  .home-banner-content .section-title {
+    margin-bottom: 10%;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .content-div h2 {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .home-banner-content {
+    bottom: 3%;
+  }
+
+  .banner-contents .content-div {
+    height: 50px;
+  }
+
+  .content-div-title i {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .home-banner-content .section-title {
+    margin-bottom: 10%;
+    font-size: 25px;
+    line-height: 35px;
+  }
+
+  .im-a-content-div {
+    width: 30%;
+  }
+
+  .content-div h2 {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .home-banner-content {
+    bottom: 3%;
+  }
+
+  .banner-contents .content-div {
+    height: 50px;
+  }
+
+  .content-div-title i {
+    font-size: 12px;
+  }
+
+  /* .investor-banner-content,
+  .banner-content-div {
+    top: 15%;
+  } */
+}
+
+@media screen and (max-width: 340px) {
+  .home-banner-content .section-title {
+    font-size: 15px;
+    line-height: 25px;
+  }
+}
+
+@import url(./admin.css);

@@ -1,0 +1,48 @@
+.str0 {
+  stroke: #1da1f2;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 22.9256;
+}
+.fil0 {
+  fill: none;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  height: 60vh;
+}
+
+svg .arrow-elem-1 {
+  stroke-dashoffset: 3058.822021484375px;
+  stroke-dasharray: 3058.822021484375px;
+  -webkit-transition: stroke-dashoffset 1.5s ease-in 0s;
+  transition: stroke-dashoffset 1.5s ease-in 0s;
+}
+svg.active .arrow-elem-1 {
+  stroke-dashoffset: 6117.64404296875px;
+}
+
+.dollar-svg path,
+.dollar-svg line,
+.dollar-svg polyline,
+.dollar-svg circle {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s ease forwards;
+}
+
+.dollar-svg.active path,
+.dollar-svg.active line,
+.dollar-svg.active polyline,
+.dollar-svg.active circle {
+  stroke-dashoffset: 0;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

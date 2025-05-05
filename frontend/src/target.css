@@ -1,0 +1,126 @@
+.str0 {
+  stroke: #1da1f2;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 22.9256;
+}
+.fil0 {
+  fill: none;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  height: 60vh;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.svg.active {
+  transform: translateY(0);
+}
+
+svg .target-elem-1 {
+  stroke-dashoffset: 538.4199829101562px;
+  stroke-dasharray: 538.4199829101562px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0s;
+  transition: stroke-dashoffset 0.3s ease-in 0s;
+}
+svg.active .target-elem-1 {
+  stroke-dashoffset: 1076.8399658203125px;
+}
+svg .target-elem-2 {
+  stroke-dashoffset: 803.8782958984375px;
+  stroke-dasharray: 803.8782958984375px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.12s;
+  transition: stroke-dashoffset 0.3s ease-in 0.12s;
+}
+svg.active .target-elem-2 {
+  stroke-dashoffset: 1607.756591796875px;
+}
+svg .target-elem-3 {
+  stroke-dashoffset: 323.82000732421875px;
+  stroke-dasharray: 323.82000732421875px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.24s;
+  transition: stroke-dashoffset 0.3s ease-in 0.24s;
+}
+svg.active .target-elem-3 {
+  stroke-dashoffset: 647.6400146484375px;
+}
+svg .target-elem-4 {
+  stroke-dashoffset: 684.6680836250621px;
+  stroke-dasharray: 684.6680836250621px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.36s;
+  transition: stroke-dashoffset 0.3s ease-in 0.36s;
+}
+svg.active .target-elem-4 {
+  stroke-dashoffset: 1369.3361672501242px;
+}
+svg .target-elem-5 {
+  stroke-dashoffset: 401.61058553662167px;
+  stroke-dasharray: 401.61058553662167px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.48s;
+  transition: stroke-dashoffset 0.3s ease-in 0.48s;
+}
+svg.active .target-elem-5 {
+  stroke-dashoffset: 803.2211710732433px;
+}
+svg .target-elem-6 {
+  stroke-dashoffset: 299.470458984375px;
+  stroke-dasharray: 299.470458984375px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.6s;
+  transition: stroke-dashoffset 0.3s ease-in 0.6s;
+}
+svg.active .target-elem-6 {
+  stroke-dashoffset: 598.94091796875px;
+}
+svg .target-elem-7 {
+  stroke-dashoffset: 37.352230072021484px;
+  stroke-dasharray: 37.352230072021484px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.72s;
+  transition: stroke-dashoffset 0.3s ease-in 0.72s;
+}
+svg.active .target-elem-7 {
+  stroke-dashoffset: 74.70446014404297px;
+}
+svg .target-elem-8 {
+  stroke-dashoffset: 37.34259033203125px;
+  stroke-dasharray: 37.34259033203125px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.84s;
+  transition: stroke-dashoffset 0.3s ease-in 0.84s;
+}
+svg.active .target-elem-8 {
+  stroke-dashoffset: 74.6851806640625px;
+}
+svg .target-elem-9 {
+  stroke-dashoffset: 37.352230072021484px;
+  stroke-dasharray: 37.352230072021484px;
+  -webkit-transition: stroke-dashoffset 0.3s ease-in 0.96s;
+  transition: stroke-dashoffset 0.3s ease-in 0.96s;
+}
+svg.active .target-elem-9 {
+  stroke-dashoffset: 74.70446014404297px;
+}
+
+.dollar-svg path,
+.dollar-svg line,
+.dollar-svg polyline,
+.dollar-svg circle {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s ease forwards;
+}
+
+.dollar-svg.active path,
+.dollar-svg.active line,
+.dollar-svg.active polyline,
+.dollar-svg.active circle {
+  stroke-dashoffset: 0;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
