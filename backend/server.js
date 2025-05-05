@@ -32,6 +32,10 @@ const PORT = process.env.PORT || 8000;
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+});
+
 app.use(cors());
 
 app.use((req, res, next) => {
