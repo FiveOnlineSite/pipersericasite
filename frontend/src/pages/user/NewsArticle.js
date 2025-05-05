@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const NewsArticle = () => {
   const [selectedFilter, setSelectedFilter] = useState("");
@@ -204,22 +205,128 @@ const NewsArticle = () => {
       date: "December 20, 2024",
       link: "https://youtu.be/lOfL087qO_E",
     },
+    {
+      news_img: "/images/news/UL3HABB-gkY-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Bounce of Volatility Hitting the Market: What's The Strategy for Investors? | ET NOW",
+      date: "May 2, 2025",
+      link: "https://youtu.be/UL3HABB-gkY",
+    },
+    {
+      news_img: "/images/news/0ctCwXrzw6A-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Abhay Agarwal Expert Insights: Stock Market, Hot Sectors & Earning Opportunities | CNBC Awaaz",
+      date: "April 30, 2025",
+      link: "https://youtu.be/0ctCwXrzw6A",
+    },
+    {
+      news_img: "/images/news/vt7XoN9_DgM-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title: ` "Don't Have More Than 10% Cash": Abhay Agarwal's Top Investment Tips Amid The Volatility | NDTV Profit`,
+      date: "April 30, 2025",
+      link: "https://youtu.be/vt7XoN9_DgM",
+    },
+    {
+      news_img: "/images/news/SuMM38PLW9w-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "बॉर्डर पर तनाव से डरे बाजार? जानिए निवेश की चाल! | War Tensions Rattle Markets | CNBC Awaaz",
+      date: "April 26, 2025",
+      link: "https://youtu.be/SuMM38PLW9w",
+    },
+    {
+      news_img: "/images/news/lNyLc-nugso-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Market Guru: Abhay Agarwal, Founder & Fund Manager, Piper Serica on FY26's Smart Portfolio Strategy | Business Today",
+      date: "April 23, 2025",
+      link: "https://www.youtube.com/live/lNyLc-nugso",
+    },
+    {
+      news_img: "/images/news/u174NeV98jM-SD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "3 Reasons That Pulled Up the Nifty Bank in Trade Today | NDTV Profit",
+      date: "April 17, 2025",
+      link: "https://youtu.be/u174NeV98jM",
+    },
+    {
+      news_img: "/images/news/3ELlPug8seI-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Mihir Vohra और Abhay Agarwal सेजािनए Tariff के झटके मेंभारत केिलए कहांहैमौके? | ET Now Swadesh",
+      date: "April 7, 2025",
+      link: "https://youtu.be/3ELlPug8seI",
+    },
+    {
+      news_img: "/images/news/ZFPBqOuoKS4-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "बाजार ने ट्रंप टैरिफ के असर को खत्म कर दिया है! | CNBC Awaaz",
+      date: "April 2, 2025",
+      link: "https://youtu.be/ZFPBqOuoKS4",
+    },
+    {
+      news_img: "/images/news/xvIcE4axRp8-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Is the Market Rally a Golden Opportunity or a Big Trap? | CNBC Awaaz",
+      date: "March 21, 2025",
+      link: "https://www.youtube.com/live/xvIcE4axRp8",
+    },
   ];
-
-  // Sort news items by date in descending order (latest date first)
-  const sortedNews = [...newsItems].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
 
   // Filter news items based on selected filter
   // const filteredNews = selectedFilter
   // ? newsItems.filter((item) => item.content_type === selectedFilter)
   // : newsItems;
+
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `news`,
+        });
+        console.log("News", response.data.news);
+        setNews(response.data.news);
+      } catch (error) {
+        console.error("Error fetching news", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  // Sort by date (latest first)
+  const sortedNews = [...news].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
+  // Filter by category
   const filteredNews = selectedFilter
-    ? sortedNews.filter((item) => item.content_type === selectedFilter)
+    ? sortedNews.filter(
+        (item) => item.news_category_id.news_category === selectedFilter
+      )
     : sortedNews;
 
-  // Function to clear filters
   const handleClearFilters = () => {
     setSelectedFilter("");
   };
@@ -264,6 +371,7 @@ const NewsArticle = () => {
                   <option value="">All</option>
                   <option value="Angel Fund">Angel Fund</option>
                   <option value="Videos">Videos</option>
+                  <option value="Market Talks">Market Talks</option>
                 </select>
               </div>
             </div>
@@ -285,18 +393,20 @@ const NewsArticle = () => {
                 className="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-3 mt-5"
                 key={index}
               >
-                <NavLink to={item.link} target="_blank">
+                <NavLink to={item.news_url} target="_blank">
                   <div className="news-div mt-4">
                     <div className="news-img-div">
                       <img
-                        src={`${process.env.PUBLIC_URL}${item.news_img}`}
-                        alt="news"
+                        src={`${
+                          process.env.REACT_APP_API_URL
+                        }/${item.thumbnail[0].filepath.replace(/\\/g, "/")}`} // Assuming filepath contains the path to the image
+                        alt={`${item.thumbnail[0].filename}`}
                         className="news-img w-100"
                       />
                     </div>
                     <div className="news-content-div">
-                      <h5>{item.content_type}</h5>
-                      <h3 className="section-title mt-3">{item.news_title}</h3>
+                      <h5>{item.news_category_id.news_category}</h5>
+                      <h3 className="section-title mt-3">{item.title}</h3>
                       <h6 className="mt-5">{item.date}</h6>
                     </div>
                   </div>

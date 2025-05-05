@@ -376,8 +376,12 @@ const ArticleSection = () => {
     // },
   ];
 
+  const filteredNewsItems = articleItems.filter(
+    (item) => item.content_type === "Angel Fund"
+  );
+
   // Sort the newsItems by date in descending order (latest first)
-  const sortedNewsItems = [...articleItems].sort(
+  const sortedNewsItems = [...filteredNewsItems].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 

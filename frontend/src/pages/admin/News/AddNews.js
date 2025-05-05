@@ -116,7 +116,7 @@ const AddNews = () => {
                 <label>Date</label>
 
                 <input
-                  type="date"
+                  type="text"
                   name="date"
                   required
                   value={date}

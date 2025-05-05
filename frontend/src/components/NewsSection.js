@@ -461,6 +461,86 @@ const NewsSection = () => {
       date: "December 20, 2024",
       link: "https://youtu.be/lOfL087qO_E",
     },
+    {
+      news_img: "/images/news/UL3HABB-gkY-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Bounce of Volatility Hitting the Market: What's The Strategy for Investors? | ET NOW",
+      date: "May 2, 2025",
+      link: "https://youtu.be/UL3HABB-gkY",
+    },
+    {
+      news_img: "/images/news/0ctCwXrzw6A-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Abhay Agarwal Expert Insights: Stock Market, Hot Sectors & Earning Opportunities | CNBC Awaaz",
+      date: "April 30, 2025",
+      link: "https://youtu.be/0ctCwXrzw6A",
+    },
+    {
+      news_img: "/images/news/vt7XoN9_DgM-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title: ` "Don't Have More Than 10% Cash": Abhay Agarwal's Top Investment Tips Amid The Volatility | NDTV Profit`,
+      date: "April 30, 2025",
+      link: "https://youtu.be/vt7XoN9_DgM",
+    },
+    {
+      news_img: "/images/news/SuMM38PLW9w-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "बॉर्डर पर तनाव से डरे बाजार? जानिए निवेश की चाल! | War Tensions Rattle Markets | CNBC Awaaz",
+      date: "April 26, 2025",
+      link: "https://youtu.be/SuMM38PLW9w",
+    },
+    {
+      news_img: "/images/news/lNyLc-nugso-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Market Guru: Abhay Agarwal, Founder & Fund Manager, Piper Serica on FY26's Smart Portfolio Strategy | Business Today",
+      date: "April 23, 2025",
+      link: "https://www.youtube.com/live/lNyLc-nugso",
+    },
+    {
+      news_img: "/images/news/u174NeV98jM-SD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "3 Reasons That Pulled Up the Nifty Bank in Trade Today | NDTV Profit",
+      date: "April 17, 2025",
+      link: "https://youtu.be/u174NeV98jM",
+    },
+    {
+      news_img: "/images/news/3ELlPug8seI-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Mihir Vohra और Abhay Agarwal सेजािनए Tariff के झटके मेंभारत केिलए कहांहैमौके? | ET Now Swadesh",
+      date: "April 7, 2025",
+      link: "https://youtu.be/3ELlPug8seI",
+    },
+    {
+      news_img: "/images/news/ZFPBqOuoKS4-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "बाजार ने ट्रंप टैरिफ के असर को खत्म कर दिया है! | CNBC Awaaz",
+      date: "April 2, 2025",
+      link: "https://youtu.be/ZFPBqOuoKS4",
+    },
+    {
+      news_img: "/images/news/xvIcE4axRp8-HD.jpg",
+      // insight_type: "News and More",
+      content_type: "Market Talks",
+      news_title:
+        "Is the Market Rally a Golden Opportunity or a Big Trap? | CNBC Awaaz",
+      date: "March 21, 2025",
+      link: "https://www.youtube.com/live/xvIcE4axRp8",
+    },
   ];
   // Sort the newsItems by date in descending order (latest first)
   const sortedNewsItems = [...newsItems].sort(

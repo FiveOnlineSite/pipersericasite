@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
@@ -273,6 +274,29 @@ const CompanyPortfolio = () => {
     setSelectedImage(null);
   };
 
+  const [companyPortfolio, setCompanyPortfolio] = useState([]);
+
+  useEffect(() => {
+    const fetchCompanyPortfolio = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `company-portfolio`,
+        });
+        console.log("Company", response.data.company);
+        setCompanyPortfolio(response.data.company);
+      } catch (error) {
+        console.error("Error fetching company portfolio:", error);
+      }
+    };
+
+    fetchCompanyPortfolio();
+  }, []);
+
   return (
     <>
       <section className="industries-portfolio-section">
@@ -317,22 +341,23 @@ const CompanyPortfolio = () => {
                 <div className="col-lg-12">
                   <div className="industries-div">
                     <div className="row">
-                      {getFilteredImages().map((images) => (
-                        <div
-                          key={images.id}
-                          className="col-lg-3 col-md-6 col-6"
-                        >
+                      {companyPortfolio &&
+                        companyPortfolio.map((images) => (
                           <div
-                            className="industires-logo-div"
-                            onClick={() => openModal(images)}
-                            style={{ cursor: "pointer" }}
+                            key={images.id}
+                            className="col-lg-3 col-md-6 col-6"
                           >
-                            <img
-                              src={`${process.env.PUBLIC_URL}${images.src}`}
-                              alt="industry"
-                              className="w-100 portfolio-img"
-                            />
-                            {/* <div className="industries-content">
+                            <div
+                              className="industires-logo-div"
+                              onClick={() => openModal(images)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <img
+                                src={`${process.env.REACT_APP_API_URL}/${images.logo[0].filepath}`}
+                                alt="industry"
+                                className="w-100 portfolio-img"
+                              />
+                              {/* <div className="industries-content">
                               <p className="para small-para">
                                 The Fund seeks to empower early and growth stage
                                 companies in India and Southeast Asia, providing them
@@ -340,9 +365,9 @@ const CompanyPortfolio = () => {
                                 equity.
                               </p>
                             </div> */}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -356,26 +381,26 @@ const CompanyPortfolio = () => {
       {selectedImage && (
         <Modal show={showModal} onHide={closeModal} centered>
           <Modal.Header closeButton>
-            <Modal.Title>{selectedImage.name}</Modal.Title>
+            <Modal.Title>{selectedImage.company_name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
               <img
-                src={`${process.env.PUBLIC_URL}${selectedImage.src}`}
-                alt="Selected Industry"
+                src={`${process.env.REACT_APP_API_URL}/${selectedImage.logo[0].filepath}`}
+                alt={`${selectedImage.logo[0].filename}`}
                 className="mb-3"
               />
             </div>
 
             <p className="para small-para justify-para">
-              {selectedImage.description}
+              {selectedImage.company_description}
             </p>
             <NavLink
               className="company-link"
-              to={selectedImage.link}
+              to={selectedImage.company_url}
               target="_blank"
             >
-              {selectedImage.link}
+              {selectedImage.company_url}
             </NavLink>
           </Modal.Body>
         </Modal>
