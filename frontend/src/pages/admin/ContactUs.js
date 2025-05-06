@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../components/AdminLayout";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ContactUs = () => {
@@ -68,9 +68,10 @@ const ContactUs = () => {
                 <thead>
                   <tr>
                     <th>Name</th>
+                    <th className="text-center">Email</th>
                     <th className="text-center">Phone</th>
                     <th className="text-center">Investor Type</th>
-                    <th className="text-center">Email</th>
+
                     <th className="text-center">Message</th>
                     <th className="text-center">Date & Time</th>
 

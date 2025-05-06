@@ -88,7 +88,9 @@ const Team = () => {
                       <tr key={team._id}>
                         <td>{team.name}</td>
                         <td className="text-center">{team.designation}</td>
-                        <td className="text-center">{team.department}</td>
+                        <td className="text-center">
+                          {team.department ? `${team.department}` : "-"}
+                        </td>
                         <td className="text-center">{team.linkedin_url}</td>
                         <td className="text-center">{team.order}</td>
 

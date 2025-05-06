@@ -145,7 +145,6 @@ const EditTeam = () => {
                   <input
                     type="text"
                     name="department"
-                    required
                     value={formData.department}
                     onChange={handleChange}
                   />

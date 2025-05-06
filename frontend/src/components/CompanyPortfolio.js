@@ -321,20 +321,12 @@ const CompanyPortfolio = () => {
                       aria-label="Default select example"
                     >
                       <option selected>INDUSTRIES</option>
-                      <option value="ADVANCE ELECTRONIC">
-                        ADVANCE ELECTRONIC
-                      </option>
-                      <option value="AI & SAAS">AI & SAAS</option>
-                      <option value="CONSUMER TECH">CONSUMER TECH</option>
-                      <option value="CYBER SECURITY & CHIP DESIGN">
-                        CYBER SECURITY & CHIP DESIGN
-                      </option>
-                      <option value="ELECTRIC VEHICLE">ELECTRIC VEHICLE</option>
-                      <option value="FINTECH">FINTECH</option>
-                      <option value="SPACETECH">SPACETECH</option>
-                      <option value="SUPPLY CHAIN TECH">
-                        SUPPLY CHAIN TECH
-                      </option>
+                      {companyPortfolio &&
+                        companyPortfolio.map((category) => (
+                          <option value={category.industry}>
+                            {category.industry}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>

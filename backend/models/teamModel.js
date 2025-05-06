@@ -12,7 +12,6 @@ const TeamSchema = new mongoose.Schema({
   },
   department: {
     type: String,
-    required: true,
   },
   linkedin_url: {
     type: String,

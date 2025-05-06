@@ -53,7 +53,7 @@ const FactsheetPresentation = () => {
         )
       );
       setTimeout(() => {
-        navigate("/admin/FactsheetPresentation");
+        navigate("/admin/factsheet-presentation");
       }, 3000);
     } catch (error) {
       console.error("Error deleting Factsheet Presentation:", error);
@@ -64,10 +64,15 @@ const FactsheetPresentation = () => {
       <div className="pages-headers ">
         <h2>
           Factsheet / Presentation
-          <NavLink to="/admin/add/factsheet-presentation" className="theme-cta">
-            <i className="las la-plus-circle"></i>
-            Add Factsheet / Presentation
-          </NavLink>
+          {factsheetPresentation.length < 4 && (
+            <NavLink
+              to="/admin/add/factsheet-presentation"
+              className="theme-cta"
+            >
+              <i className="las la-plus-circle"></i>
+              Add Factsheet / Presentation
+            </NavLink>
+          )}
         </h2>
       </div>
       <div className="row mobilerows">

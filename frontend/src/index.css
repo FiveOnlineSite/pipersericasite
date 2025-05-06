@@ -1384,7 +1384,7 @@ body {
 }
 
 .modal-body img {
-  width: 50%;
+  width: auto;
   height: 100px;
   object-fit: contain;
 }

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const InvestorLetter = () => {
   const letters = [
@@ -269,6 +270,28 @@ const InvestorLetter = () => {
     },
   ];
 
+  const [investorLetter, setInvestorLetter] = useState([]);
+
+  useEffect(() => {
+    const fetchInvestorLetter = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `investor-letter`,
+        });
+        setInvestorLetter(response.data.investorLetter);
+      } catch (error) {
+        console.error("Error fetching investor letter", error);
+      }
+    };
+
+    fetchInvestorLetter();
+  }, []);
+
   // Function to parse dates properly for sorting
   const parseDate = (dateStr) => {
     const [month, year] = dateStr.split(" ");
@@ -276,8 +299,8 @@ const InvestorLetter = () => {
   };
 
   // Sort letters by date (latest first)
-  const sortedLetters = [...letters].sort(
-    (a, b) => parseDate(b.date) - parseDate(a.date)
+  const sortedLetters = [...investorLetter].sort(
+    (a, b) => parseDate(b.month_year) - parseDate(a.month_year)
   );
 
   const [selectedFilter, setSelectedFilter] = useState("");
@@ -366,14 +389,14 @@ const InvestorLetter = () => {
             {filteredLetters.map((letter, index) => (
               <div className="col-lg-3 col-md-6 col-12" key={index}>
                 <NavLink
-                  to={`${process.env.PUBLIC_URL}${letter.filepath}`}
+                  to={`${
+                    process.env.REACT_APP_API_URL
+                  }/${letter.file_upload[0].filepath.replace(/\\/g, "/")}`}
                   target="_blank"
                 >
                   <div className="letter-div mb-4">
-                    <h5 className="section-subtitle">{letter.date}</h5>
-                    <h3>
-                      Piper Serica Leader Portfolio Strategy {letter.date}
-                    </h3>
+                    <h5 className="section-subtitle">{letter.month_year}</h5>
+                    <h3>{letter.title}</h3>
                     {/* <div className="letter-options py-3 pt-5">
                     
                       <i class="fa-solid fa-eye"></i>

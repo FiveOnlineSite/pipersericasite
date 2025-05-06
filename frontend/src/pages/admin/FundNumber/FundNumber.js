@@ -62,10 +62,12 @@ const FundNumber = () => {
       <div className="pages-headers ">
         <h2>
           Fund Number
-          <NavLink to="/admin/add/fund-number" className="theme-cta">
-            <i className="las la-plus-circle"></i>
-            Add Fund Number
-          </NavLink>
+          {fundNumber.length < 7 && (
+            <NavLink to="/admin/add/fund-number" className="theme-cta">
+              <i className="las la-plus-circle"></i>
+              Add Fund Number
+            </NavLink>
+          )}
         </h2>
       </div>
       <div className="row mobilerows">
@@ -78,7 +80,7 @@ const FundNumber = () => {
                     <th>Fund / Investor Name</th>
                     <th className="text-center">Fund Numbers</th>
                     <th className="text-center">Fund Number Titles</th>
-                    <th className="text-center">Fund Number Subtitle</th>
+                    <th className="text-center">Fund Subtitle</th>
                     <th className="text-center">Fund Figures</th>
                     <th className="text-center">Edit</th>
                     <th className="text-center">Delete</th>
@@ -111,18 +113,18 @@ const FundNumber = () => {
                               {fundNumber.fund_subtitle1 &&
                                 `${fundNumber.fund_subtitle1} `}
                               {fundNumber.fund_subtitle2 &&
-                                `, ${fundNumber.fund_subtitle2} `}
+                                `${fundNumber.fund_subtitle2} `}
                               {fundNumber.fund_subtitle3 &&
-                                ` , ${fundNumber.fund_subtitle3}`}{" "}
+                                ` ${fundNumber.fund_subtitle3}`}{" "}
                             </>
                           ) : (
-                            "No description "
+                            "-"
                           )}
                         </td>
                         <td className="text-center">
                           {fundNumber.fund_figures
                             ? `${fundNumber.fund_figures} `
-                            : "No figures"}
+                            : "-"}
                         </td>
                         <td className="text-center">
                           <Link

@@ -45,7 +45,6 @@ app.use((req, res, next) => {
 });
 
 // app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/api", (req, res) => {
   res.send("This is backend");
@@ -63,13 +62,17 @@ app.use("/api/contact", Route.contactRoute);
 app.use("/api/factsheet-form", Route.factsheetFormRoute);
 app.use("/api/presentation-form", Route.presentationFormRoute);
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.use("/docs", express.static(path.join(__dirname, "docs")));
+
 // Serve the sitemap at /sitemap.xml
 app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "public/sitemap.xml"));
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 // All other requests will be handled by React

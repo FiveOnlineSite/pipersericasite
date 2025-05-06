@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink, useLocation } from "react-router-dom";
-import "../../../src/svg.css";
-import "../../../src/target.css";
-import "../../../src/arrows.css";
-import "../../../src/rocket.css";
-import "../../../src/dollar.css";
-import GatewaySvg from "../../components/GatewaySvg";
-import SvgComponent from "./svgcomponent";
-import TargetSvg from "../../components/TargetSvg";
-import UpArrowSvg from "../../components/UpArrowSvg";
-import DollarSvg from "../../components/DollarSvg";
-import RocketSvg from "../../components/RocketSvg";
-import GatewayAnimation from "../../components/atoms/GatewayAnimation";
+
 import VerticalTabs from "../../components/templates/VerticalTabs";
+import axios from "axios";
 
 const About = () => {
   const [openAccordion, setOpenAccordion] = useState(0);
@@ -23,98 +13,98 @@ const About = () => {
     setOpenAccordion((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  const teamContent = [
-    {
-      image: "/images/team/abhay-agarwal-560x560.jpeg",
-      name: "Abhay Agarwal",
-      linkedin_url: "https://www.linkedin.com/in/abhay-agarwal-piper/",
-      designation: "Founder & Fund Manager",
-    },
-    {
-      image: "/images/team/rajni-560x560.jpeg",
-      name: "Rajni Agarwal",
-      linkedin_url: "https://www.linkedin.com/in/rajni-agarwal-99352218b/",
-      designation: "Director, Research",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Ajay Modi",
-      linkedin_url: "https://www.linkedin.com/in/ajmodi/",
-      designation: "Director, Investments",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Rahul Chaudhari",
-      linkedin_url: "https://www.linkedin.com/in/rahulchaudhari73/",
-      designation: "Head - Ops & Compliance",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Hardik Dua",
-      linkedin_url: "https://www.linkedin.com/in/hardik-dua/",
-      designation: "Associate",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Satyadeep Singh",
-      linkedin_url: "https://www.linkedin.com/in/thesatyadeepsingh/",
-      designation: "Associate",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Preet Malde",
-      linkedin_url: "https://www.linkedin.com/in/preet-malde-4a37991ba/",
-      designation: "Analyst",
-    },
-    // {
-    //   image: "/images/team/Ajay-modi-560x560.jpeg",
-    //   name: "Mukund Agarwal",
-    //   linkedin_url: "https://www.linkedin.com/in/mukundagarwal3/",
-    //   designation: "Analyst",
-    // },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Akshay Kadam",
-      linkedin_url: "https://www.linkedin.com/in/akshay-kadam-98363525b/",
-      designation: "Senior Manager - Investor Relations",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Anuja Mohare",
-      linkedin_url: "https://www.linkedin.com/in/anuja-mohare-8a5150147/",
-      designation: "Senior Manager - Operations",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Yash Gandhi",
-      linkedin_url: "https://www.linkedin.com/in/yash-gandhi-28576a357/",
-      designation: "Manager - Finance & Operations",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Rahul Mishra",
-      linkedin_url: "https://www.linkedin.com/in/rahul-mishra02/",
-      designation: "Manager - Operations & Client Servicing",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Vishal Kudtarkar",
-      linkedin_url: "https://www.linkedin.com/in/vishal-kudtarkar-262273246/",
-      designation: "Assistant Manager - Finance",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Shubham Kumbhar",
-      linkedin_url: "https://www.linkedin.com/in/11shubhamk/",
-      designation: "Manager - Marketing",
-    },
-    {
-      image: "/images/team/Ajay-modi-560x560.jpeg",
-      name: "Abhijeet Gaonkar",
-      linkedin_url: "https://www.linkedin.com/in/abhijeet-gaonkar-446315339/",
-      designation: "Senior Manager - Administration",
-    },
-  ];
+  // const teamContent = [
+  //   {
+  //     image: "/images/team/abhay-agarwal-560x560.jpeg",
+  //     name: "Abhay Agarwal",
+  //     linkedin_url: "https://www.linkedin.com/in/abhay-agarwal-piper/",
+  //     designation: "Founder & Fund Manager",
+  //   },
+  //   {
+  //     image: "/images/team/rajni-560x560.jpeg",
+  //     name: "Rajni Agarwal",
+  //     linkedin_url: "https://www.linkedin.com/in/rajni-agarwal-99352218b/",
+  //     designation: "Director, Research",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Ajay Modi",
+  //     linkedin_url: "https://www.linkedin.com/in/ajmodi/",
+  //     designation: "Director, Investments",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Rahul Chaudhari",
+  //     linkedin_url: "https://www.linkedin.com/in/rahulchaudhari73/",
+  //     designation: "Head - Ops & Compliance",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Hardik Dua",
+  //     linkedin_url: "https://www.linkedin.com/in/hardik-dua/",
+  //     designation: "Associate",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Satyadeep Singh",
+  //     linkedin_url: "https://www.linkedin.com/in/thesatyadeepsingh/",
+  //     designation: "Associate",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Preet Malde",
+  //     linkedin_url: "https://www.linkedin.com/in/preet-malde-4a37991ba/",
+  //     designation: "Analyst",
+  //   },
+  //   // {
+  //   //   image: "/images/team/Ajay-modi-560x560.jpeg",
+  //   //   name: "Mukund Agarwal",
+  //   //   linkedin_url: "https://www.linkedin.com/in/mukundagarwal3/",
+  //   //   designation: "Analyst",
+  //   // },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Akshay Kadam",
+  //     linkedin_url: "https://www.linkedin.com/in/akshay-kadam-98363525b/",
+  //     designation: "Senior Manager - Investor Relations",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Anuja Mohare",
+  //     linkedin_url: "https://www.linkedin.com/in/anuja-mohare-8a5150147/",
+  //     designation: "Senior Manager - Operations",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Yash Gandhi",
+  //     linkedin_url: "https://www.linkedin.com/in/yash-gandhi-28576a357/",
+  //     designation: "Manager - Finance & Operations",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Rahul Mishra",
+  //     linkedin_url: "https://www.linkedin.com/in/rahul-mishra02/",
+  //     designation: "Manager - Operations & Client Servicing",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Vishal Kudtarkar",
+  //     linkedin_url: "https://www.linkedin.com/in/vishal-kudtarkar-262273246/",
+  //     designation: "Assistant Manager - Finance",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Shubham Kumbhar",
+  //     linkedin_url: "https://www.linkedin.com/in/11shubhamk/",
+  //     designation: "Manager - Marketing",
+  //   },
+  //   {
+  //     image: "/images/team/Ajay-modi-560x560.jpeg",
+  //     name: "Abhijeet Gaonkar",
+  //     linkedin_url: "https://www.linkedin.com/in/abhijeet-gaonkar-446315339/",
+  //     designation: "Senior Manager - Administration",
+  //   },
+  // ];
 
   const { hash, pathname } = useLocation();
 
@@ -130,13 +120,13 @@ const About = () => {
     }
   }, [hash, pathname]); // Re-run when pathname or hash changes
 
-  const handleNavClick = (event, targetHash) => {
-    if (hash === targetHash) {
-      event.preventDefault(); // Prevent scrolling when already at the target section
-    }
-  };
+  // const handleNavClick = (event, targetHash) => {
+  //   if (hash === targetHash) {
+  //     event.preventDefault(); // Prevent scrolling when already at the target section
+  //   }
+  // };
 
-  const [activeTab, setActiveTab] = useState("fifteen");
+  // const [activeTab, setActiveTab] = useState("fifteen");
   // const [gifSources, setGifSources] = useState({
   //   four: "/images/history/Getway-of-India-2004-GIF (2).gif",
   //   fifteen: "/images/history/Target-2015-GIF.gif",
@@ -170,16 +160,16 @@ const About = () => {
   // });
 
   // ✅ On tab click, only update GIF if tab is different
-  const handleTabClick = (tab, event) => {
-    event.preventDefault();
-    if (tab === activeTab) return;
+  // const handleTabClick = (tab, event) => {
+  //   event.preventDefault();
+  //   if (tab === activeTab) return;
 
-    setActiveTab(tab);
-    // setGifSources((prev) => ({
-    //   ...prev,
-    //   [tab]: `${baseGifSources[tab]}?t=${Date.now()}`,
-    // }));
-  };
+  //   setActiveTab(tab);
+  //   // setGifSources((prev) => ({
+  //   //   ...prev,
+  //   //   [tab]: `${baseGifSources[tab]}?t=${Date.now()}`,
+  //   // }));
+  // };
 
   // // ✅ Preload all base GIFs once on mount
   // useEffect(() => {
@@ -188,6 +178,28 @@ const About = () => {
   //     img.src = src;
   //   });
   // }, []);
+
+  const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `team`,
+        });
+        setTeam(response.data.teams);
+      } catch (error) {
+        console.error("Error fetching team:", error);
+      }
+    };
+
+    fetchTeam();
+  }, []);
 
   return (
     <Layout>
@@ -686,29 +698,31 @@ const About = () => {
           </div> */}
 
           <div className="row mb-5">
-            {teamContent.map((team, index) => (
-              <div className="col-xxl-3 col-xl-4 col-md-6 col-12" key={index}>
-                <div className="team-div img-team-one">
-                  {/* <img
+            {team &&
+              team.map((team, index) => (
+                <div className="col-xxl-3 col-xl-4 col-md-6 col-12" key={index}>
+                  <div className="team-div img-team-one">
+                    {/* <img
                     src={`${process.env.PUBLIC_URL}${team.image}`}
                     alt="team-img"
                     className="w-100"
                   /> */}
-                  <div className="team-content">
-                    <div className="team-title-div">
-                      <h3 className="section-title team-name">{team.name}</h3>
-                      <NavLink to={team.linkedin_url} target="_blank">
-                        <i className="fa-brands fa-linkedin"></i>
-                      </NavLink>
-                    </div>
+                    <div className="team-content">
+                      <div className="team-title-div">
+                        <h3 className="section-title team-name">{team.name}</h3>
+                        <NavLink to={team.linkedin_url} target="_blank">
+                          <i className="fa-brands fa-linkedin"></i>
+                        </NavLink>
+                      </div>
 
-                    <h5 className="section-subtitle small-txt">
-                      {team.designation}
-                    </h5>
+                      <h5 className="section-subtitle small-txt">
+                        {team.designation}
+                        {team.department ? `, ${team.department}` : ""}
+                      </h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>

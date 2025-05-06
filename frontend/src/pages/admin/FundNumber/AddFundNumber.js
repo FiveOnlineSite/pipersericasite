@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../../../components/AdminLayout";
 
@@ -143,7 +143,7 @@ const AddFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Number 1</label>
                 <input
@@ -156,31 +156,7 @@ const AddFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Number 2</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={fundNumber2}
-                  onChange={(e) => setFundNumber2(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Number 3</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={fundNumber3}
-                  onChange={(e) => setFundNumber3(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Title 1</label>
                 <input
@@ -193,31 +169,7 @@ const AddFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Title 2</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={fundTitle2}
-                  onChange={(e) => setFundTitle2(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Title 3</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={fundTitle3}
-                  onChange={(e) => setFundTitle3(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 1</label>
                 <input
@@ -229,7 +181,31 @@ const AddFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Number 2</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={fundNumber2}
+                  onChange={(e) => setFundNumber2(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Title 2</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={fundTitle2}
+                  onChange={(e) => setFundTitle2(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 2</label>
                 <input
@@ -241,7 +217,31 @@ const AddFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Number 3</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={fundNumber3}
+                  onChange={(e) => setFundNumber3(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Title 3</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={fundTitle3}
+                  onChange={(e) => setFundTitle3(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 3</label>
                 <input

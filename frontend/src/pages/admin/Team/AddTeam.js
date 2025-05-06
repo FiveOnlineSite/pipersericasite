@@ -95,7 +95,6 @@ const AddTeam = () => {
                   name="department"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  required
                 />
               </div>
             </div>

@@ -5,8 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditFundNumber = () => {
   const { id } = useParams();
-  const [selectedFundName, setSelectedFundName] = useState("");
-  const [fundNumber, setFundNumber] = useState("");
+
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -147,7 +146,7 @@ const EditFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Number 1</label>
                 <input
@@ -160,31 +159,7 @@ const EditFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Number 2</label>
-                <input
-                  type="text"
-                  name="fund_number2"
-                  value={formData.fund_number2}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Number 3</label>
-                <input
-                  type="text"
-                  name="fund_number3"
-                  value={formData.fund_number3}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Title 1</label>
                 <input
@@ -196,31 +171,7 @@ const EditFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Title 2</label>
-                <input
-                  type="text"
-                  name="fund_title2"
-                  value={formData.fund_title2}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="theme-form">
-                <label>Fund Title 3</label>
-                <input
-                  type="text"
-                  name="fund_title3"
-                  value={formData.fund_title3}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 1</label>
                 <input
@@ -232,7 +183,31 @@ const EditFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Number 2</label>
+                <input
+                  type="text"
+                  name="fund_number2"
+                  value={formData.fund_number2}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Title 2</label>
+                <input
+                  type="text"
+                  name="fund_title2"
+                  value={formData.fund_title2}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 2</label>
                 <input
@@ -244,7 +219,31 @@ const EditFundNumber = () => {
               </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Number 3</label>
+                <input
+                  type="text"
+                  name="fund_number3"
+                  value={formData.fund_number3}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Fund Title 3</label>
+                <input
+                  type="text"
+                  name="fund_title3"
+                  value={formData.fund_title3}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Fund Subtitle 3</label>
                 <input

@@ -293,6 +293,7 @@ const NewsArticle = () => {
   // : newsItems;
 
   const [news, setNews] = useState([]);
+  const [newsCategory, setNewsCategory] = useState([]);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -313,6 +314,27 @@ const NewsArticle = () => {
     };
 
     fetchNews();
+  }, []);
+
+  useEffect(() => {
+    const fetchNewsCategory = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `news-category`,
+        });
+        console.log("News Category", response.data.newsCategory);
+        setNewsCategory(response.data.newsCategory);
+      } catch (error) {
+        console.error("Error fetching news category", error);
+      }
+    };
+
+    fetchNewsCategory();
   }, []);
 
   // Sort by date (latest first)
@@ -369,9 +391,12 @@ const NewsArticle = () => {
                   onChange={(e) => setSelectedFilter(e.target.value)}
                 >
                   <option value="">All</option>
-                  <option value="Angel Fund">Angel Fund</option>
-                  <option value="Videos">Videos</option>
-                  <option value="Market Talks">Market Talks</option>
+                  {newsCategory &&
+                    newsCategory.map((category, index) => (
+                      <option key={index} value={category.news_category}>
+                        {category.news_category}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
