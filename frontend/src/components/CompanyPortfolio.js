@@ -264,6 +264,11 @@ const CompanyPortfolio = () => {
     return images.filter((image) => image.label === selectedIndustry);
   };
 
+  const filteredImages =
+    selectedIndustry === "INDUSTRIES"
+      ? images
+      : images.filter((img) => img.label === selectedIndustry);
+
   const openModal = (image) => {
     setSelectedImage(image);
     setShowModal(true);
@@ -317,39 +322,42 @@ const CompanyPortfolio = () => {
                   <div className="industries-filter-div">
                     <select
                       className="form-select"
-                      onChange={handleFilterChange}
+                      value={selectedIndustry}
+                      onChange={(e) => setSelectedIndustry(e.target.value)}
                       aria-label="Default select example"
                     >
                       <option selected>INDUSTRIES</option>
-                      {companyPortfolio &&
-                        companyPortfolio.map((category) => (
-                          <option value={category.industry}>
-                            {category.industry}
-                          </option>
-                        ))}
+                      {[
+                        ...new Set(
+                          companyPortfolio.map((item) => item.industry)
+                        ),
+                      ].map((industry) => (
+                        <option key={industry} value={industry}>
+                          {industry}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="industries-div">
                     <div className="row">
-                      {companyPortfolio &&
-                        companyPortfolio.map((images) => (
+                      {filteredImages.map((image) => (
+                        <div
+                          key={images.id}
+                          className="col-lg-3 col-md-6 col-6"
+                        >
                           <div
-                            key={images.id}
-                            className="col-lg-3 col-md-6 col-6"
+                            className="industires-logo-div"
+                            onClick={() => openModal(images)}
+                            style={{ cursor: "pointer" }}
                           >
-                            <div
-                              className="industires-logo-div"
-                              onClick={() => openModal(images)}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <img
-                                src={`${process.env.REACT_APP_API_URL}/${images.logo[0].filepath}`}
-                                alt="industry"
-                                className="w-100 portfolio-img"
-                              />
-                              {/* <div className="industries-content">
+                            <img
+                              src={`${process.env.REACT_APP_API_URL}/${images.logo[0].filepath}`}
+                              alt="industry"
+                              className="w-100 portfolio-img"
+                            />
+                            {/* <div className="industries-content">
                               <p className="para small-para">
                                 The Fund seeks to empower early and growth stage
                                 companies in India and Southeast Asia, providing them
@@ -357,9 +365,9 @@ const CompanyPortfolio = () => {
                                 equity.
                               </p>
                             </div> */}
-                            </div>
                           </div>
-                        ))}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

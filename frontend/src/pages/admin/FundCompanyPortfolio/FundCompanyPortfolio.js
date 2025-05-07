@@ -76,7 +76,7 @@ const FundCompanyPortfolio = () => {
                     <th>Company Logo</th>
                     <th className="text-center">Industry</th>
                     <th className="text-center">Company Name</th>
-                    <th className="text-center">Description</th>
+                    {/* <th className="text-center">Description</th> */}
                     <th className="text-center">Website Link</th>
                     <th className="text-center">Edit</th>
                     <th className="text-center">Delete</th>
@@ -98,9 +98,9 @@ const FundCompanyPortfolio = () => {
                         <td className="text-center">
                           {companies.company_name}
                         </td>
-                        <td className="text-center">
+                        {/* <td className="text-center">
                           {companies.company_description}
-                        </td>
+                        </td> */}
                         <td className="text-center">{companies.company_url}</td>
 
                         <td className="text-center">
