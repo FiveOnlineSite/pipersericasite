@@ -36,7 +36,7 @@ const MetaTagComponent = () => {
         const metaTag = response.data;
 
         // Set document title
-        document.title = metaTag.metaTitle || "Default Title";
+        // document.title = metaTag.metaTitle || "Default Title";
 
         // Update or create meta description
         let metaDescription = document.querySelector(
