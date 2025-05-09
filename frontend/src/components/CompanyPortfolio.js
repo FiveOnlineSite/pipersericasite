@@ -292,7 +292,9 @@ const CompanyPortfolio = () => {
           baseURL: `${apiUrl}/api/`,
           url: `company-portfolio`,
         });
-        console.log("Company", response.data.company);
+        response.data.company.forEach((comp, index) => {
+          console.log(`Company ${index + 1} logo:`, comp.logo?.[0]?.filepath);
+        });
         setCompanyPortfolio(response.data.company);
       } catch (error) {
         console.error("Error fetching company portfolio:", error);
@@ -342,22 +344,38 @@ const CompanyPortfolio = () => {
                 <div className="col-lg-12">
                   <div className="industries-div">
                     <div className="row">
-                      {filteredImages.map((image) => (
-                        <div
-                          key={images.id}
-                          className="col-lg-3 col-md-6 col-6"
-                        >
+                      {companyPortfolio
+                        .filter(
+                          (company) =>
+                            selectedIndustry === "INDUSTRIES" ||
+                            selectedIndustry === "" ||
+                            company.industry === selectedIndustry
+                        )
+                        .map((company) => (
                           <div
-                            className="industires-logo-div"
-                            onClick={() => openModal(images)}
-                            style={{ cursor: "pointer" }}
+                            key={company._id}
+                            className="col-lg-3 col-md-6 col-6"
                           >
-                            <img
-                              src={`${process.env.REACT_APP_API_URL}/${images.logo[0].filepath}`}
-                              alt="industry"
-                              className="w-100 portfolio-img"
-                            />
-                            {/* <div className="industries-content">
+                            <div
+                              className="industires-logo-div"
+                              onClick={() => openModal(company)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <img
+                                src={
+                                  company.logo?.[0]?.filepath
+                                    ? `${
+                                        process.env.REACT_APP_API_URL
+                                      }/${company.logo[0].filepath.replace(
+                                        /\\/g,
+                                        "/"
+                                      )}`
+                                    : "/default-logo.png"
+                                }
+                                alt="company logo"
+                                className="w-100 portfolio-img"
+                              />
+                              {/* <div className="industries-content">
                               <p className="para small-para">
                                 The Fund seeks to empower early and growth stage
                                 companies in India and Southeast Asia, providing them
@@ -365,9 +383,9 @@ const CompanyPortfolio = () => {
                                 equity.
                               </p>
                             </div> */}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -386,7 +404,9 @@ const CompanyPortfolio = () => {
           <Modal.Body>
             <div>
               <img
-                src={`${process.env.REACT_APP_API_URL}/${selectedImage.logo[0].filepath}`}
+                src={`${
+                  process.env.REACT_APP_API_URL
+                }/${selectedImage.logo[0].filepath.replace(/\\/g, "/")}`}
                 alt={`${selectedImage.logo[0].filename}`}
                 className="mb-3"
               />

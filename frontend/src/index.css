@@ -1341,7 +1341,7 @@ body {
   aspect-ratio: 4/2;
   object-fit: contain;
   margin: 0 15px;
-  mix-blend-mode: color-burn;
+  /* mix-blend-mode: color-burn; */
 }
 
 .industires-logo-div .entre-img-one {
