@@ -104,7 +104,12 @@ const getAllMetaTags = async (req, res) => {
         .json({ message: "Meta tag not found for this id." });
     }
 
-    res.status(200).json(metaTag);
+    res.status(200).json({
+      message: "All meta tags fetched successfully.",
+
+      count: metaTag.length,
+      metaTag,
+    });
   } catch (error) {
     res
       .status(500)

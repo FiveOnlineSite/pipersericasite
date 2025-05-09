@@ -75,7 +75,7 @@ const ContactUs = () => {
                     <th className="text-center">Message</th>
                     <th className="text-center">Date & Time</th>
 
-                    <th className="text-center">Delete</th>
+                    {/* <th className="text-center">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -87,16 +87,35 @@ const ContactUs = () => {
                         <td className="text-center">{contact.phone}</td>
                         <td className="text-center">{contact.investor_type}</td>
                         <td className="text-center">{contact.message}</td>
-                        <td className="text-center">{contact.createdAt}</td>
-
                         <td className="text-center">
+                          {new Date(contact.createdAt).toLocaleDateString(
+                            "en-IN",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              timeZone: "Asia/Kolkata", // Specify the time zone as IST
+                            }
+                          )}{" "}
+                          at{" "}
+                          {new Date(contact.createdAt).toLocaleTimeString(
+                            "en-IN",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              timeZone: "Asia/Kolkata", // Specify the time zone as IST
+                            }
+                          )}
+                        </td>
+
+                        {/* <td className="text-center">
                           <button
                             className="delete-btn"
                             onClick={() => handleDelete(contact._id)}
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>

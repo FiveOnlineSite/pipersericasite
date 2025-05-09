@@ -3,7 +3,7 @@ const path = require("path");
 
 const createInvestorLetter = async (req, res) => {
   try {
-    const { title, month_year } = req.body;
+    const { month_year } = req.body;
     let fileData = {};
     let fileType = "";
     {
@@ -34,7 +34,6 @@ const createInvestorLetter = async (req, res) => {
     }
 
     const newInvestorLetter = new InvestorLetterModel({
-      title,
       month_year,
       file_upload: fileData,
     });
@@ -54,7 +53,7 @@ const createInvestorLetter = async (req, res) => {
 
 const updateInvestorLetter = async (req, res) => {
   try {
-    const { title, month_year } = req.body;
+    const { month_year } = req.body;
 
     const existingInvestorLetter = await InvestorLetterModel.findById(
       req.params._id
@@ -85,7 +84,6 @@ const updateInvestorLetter = async (req, res) => {
 
     // Create object with updated fields
     const updatedFields = {
-      ...(title && { title }),
       ...(month_year && { month_year }),
       ...(file && { file_upload: fileData }),
     };

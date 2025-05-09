@@ -95,7 +95,7 @@ const DashBoard = () => {
       .catch((error) => console.error("Error fetching team count:", error));
 
     axios
-      .get(`${apiUrl}/api/meat-tag`)
+      .get(`${apiUrl}/api/meta-tag`)
       .then((response) => {
         const count = response.data.count;
 

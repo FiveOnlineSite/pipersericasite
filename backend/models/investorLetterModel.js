@@ -10,10 +10,10 @@ const InvestorLetterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  title: {
-    type: String,
-    required: true,
-  },
+  // title: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
 const InvestorLetterModel = mongoose.model(

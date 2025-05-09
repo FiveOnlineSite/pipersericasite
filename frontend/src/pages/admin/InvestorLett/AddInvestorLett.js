@@ -60,7 +60,7 @@ const AddInvestorLett = () => {
       <div className="form-white-bg">
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            {/* <div className="col-lg-6 col-md-6 col-sm-12 col-12">
               <div className="theme-form">
                 <label>Title</label>
                 <input
@@ -71,7 +71,7 @@ const AddInvestorLett = () => {
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="col-lg-6 col-md-6 col-sm-12 col-12">
               <div className="theme-form">

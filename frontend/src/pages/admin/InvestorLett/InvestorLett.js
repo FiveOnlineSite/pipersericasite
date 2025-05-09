@@ -21,7 +21,14 @@ const InvestorLett = () => {
           url: "investor-letter",
         });
         console.log(response.data.investorLetter);
-        setInvestorLetter(response.data.investorLetter);
+        // Sorting by year in descending order
+        const sortedLetters = response.data.investorLetter.sort((a, b) => {
+          const yearA = parseInt(a.month_year.split(" ")[1]);
+          const yearB = parseInt(b.month_year.split(" ")[1]);
+          return yearB - yearA; // descending order
+        });
+
+        setInvestorLetter(sortedLetters);
       } catch (error) {
         console.error("Error fetching investor letter:", error);
       }
@@ -76,8 +83,7 @@ const InvestorLett = () => {
               <table id="example" className="table nowrap">
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th className="text-center">Month/Year</th>
+                    <th>Month/Year</th>
                     <th className="text-center">Document</th>
                     <th className="text-center">Edit</th>
                     <th className="text-center">Delete</th>

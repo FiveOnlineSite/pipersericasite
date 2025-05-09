@@ -19,8 +19,8 @@ const MetaTag = () => {
           baseURL: `${apiUrl}/api/`,
           url: "meta-tag",
         });
-        console.log(response.data);
-        setMetaTag(response.data);
+        console.log(response.data.metaTag);
+        setMetaTag(response.data.metaTag);
       } catch (error) {
         console.error("Error fetching Meta Tag:", error);
       }
@@ -77,7 +77,7 @@ const MetaTag = () => {
                     <th className="text-center">Meta Title</th>
                     <th className="text-center">Meta Description</th>
                     <th className="text-center">Edit</th>
-                    <th className="text-center">Delete</th>
+                    {/* <th className="text-center">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -98,14 +98,14 @@ const MetaTag = () => {
                             <i class="las la-pencil-alt"></i>
                           </Link>
                         </td>
-                        <td className="text-center">
+                        {/* <td className="text-center">
                           <button
                             className="delete-btn"
                             onClick={() => handleDelete(metaTag._id)}
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>

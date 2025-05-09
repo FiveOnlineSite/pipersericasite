@@ -76,7 +76,7 @@ const PresentationForm = () => {
                     <th className="text-center">Fund Name</th>
                     <th className="text-center">Date & Time</th>
 
-                    <th className="text-center">Delete</th>
+                    {/* <th className="text-center">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -92,16 +92,31 @@ const PresentationForm = () => {
                           {presentationForm.fund_name}
                         </td>
                         <td className="text-center">
-                          {presentationForm.createdAt}
+                          {new Date(
+                            presentationForm.createdAt
+                          ).toLocaleDateString("en-IN", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            timeZone: "Asia/Kolkata", // Specify the time zone as IST
+                          })}{" "}
+                          at{" "}
+                          {new Date(
+                            presentationForm.createdAt
+                          ).toLocaleTimeString("en-IN", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            timeZone: "Asia/Kolkata", // Specify the time zone as IST
+                          })}
                         </td>
-                        <td className="text-center">
+                        {/* <td className="text-center">
                           <button
                             className="delete-btn"
                             onClick={() => handleDelete(presentationForm._id)}
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>

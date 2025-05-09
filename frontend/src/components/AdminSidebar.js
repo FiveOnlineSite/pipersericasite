@@ -49,14 +49,15 @@ const AdminSidebar = () => {
 
           <li>
             <NavLink to="/admin/factsheet-presentation" title="Services">
-              <span className="las la-hands-helping"></span>{" "}
+              <span className="las la-file-alt"></span>{" "}
               <span>Factsheet / Presentation</span>
             </NavLink>
           </li>
 
           <li>
             <NavLink to="/admin/fund-number" title="Gallery Name">
-              <span className="las la-images"></span> <span>Fund Numbers</span>
+              <span className="las la-sort-numeric-up"></span>{" "}
+              <span>Fund Numbers</span>
             </NavLink>
           </li>
 
@@ -75,13 +76,14 @@ const AdminSidebar = () => {
 
           <li>
             <NavLink to="/admin/news" title="Passwords">
-              <span className="las la-lock"></span> <span>News & More</span>
+              <span className="las la-newspaper"></span>{" "}
+              <span>News & More</span>
             </NavLink>
           </li>
 
           <li>
             <NavLink to="/admin/investor-letter" title="About Us">
-              <span className="las la-user-friends"></span>{" "}
+              <span className="las la-envelope"></span>{" "}
               <span>Investor Letter</span>
             </NavLink>
           </li>
@@ -93,7 +95,7 @@ const AdminSidebar = () => {
           </li>
           <li>
             <NavLink to="/admin/meta-tag" title="Meta Tag">
-              <span className="las la-users"></span> <span>Meta Tag</span>
+              <span className="las la-cogs"></span> <span>Meta Tag</span>
             </NavLink>
           </li>
           <li>
@@ -104,14 +106,13 @@ const AdminSidebar = () => {
 
           <li>
             <NavLink to="/admin/factsheet-form" title="Opportunities">
-              <span className="las la-rocket"></span>{" "}
-              <span>Factsheet Form</span>
+              <span className="las la-edit"></span> <span>Factsheet Form</span>
             </NavLink>
           </li>
 
           <li>
             <NavLink to="/admin/presentation-form" title="Applications">
-              <span className="las la-book"></span>{" "}
+              <span className="las la-edit"></span>{" "}
               <span>Presentation Form</span>
             </NavLink>
           </li>

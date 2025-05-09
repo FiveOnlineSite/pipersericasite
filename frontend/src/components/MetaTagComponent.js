@@ -1,4 +1,3 @@
-// MetaTagComponent.js
 import React, { useEffect } from "react";
 import axios from "axios";
 
@@ -22,7 +21,11 @@ const MetaTagComponent = () => {
 
         // Get the current page path from the URL
         const pathSegments = window.location.pathname.split("/");
-        const page = pathSegments[pathSegments.length - 1]; // Extract last part of the URL (e.g., "about", "contact")
+        let page = pathSegments[pathSegments.length - 1]; // Extract last part of the URL (e.g., "about", "contact")
+
+        if (page === "" || page === "/") {
+          page = "home";
+        }
 
         const response = await axios({
           method: "GET",

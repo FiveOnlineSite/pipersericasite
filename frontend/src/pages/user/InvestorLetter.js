@@ -272,17 +272,18 @@ const InvestorLetter = () => {
   ];
 
   const [investorLetter, setInvestorLetter] = useState([]);
+  const [yearRanges, setYearRanges] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
+  // Fetch investor letters data from the API
   useEffect(() => {
     const fetchInvestorLetter = async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
-
-        // const response = await axios.get("/api/user/allUsers");
         const response = await axios({
           method: "GET",
           baseURL: `${apiUrl}/api/`,
-          url: `investor-letter`,
+          url: "investor-letter",
         });
         setInvestorLetter(response.data.investorLetter);
       } catch (error) {
@@ -295,6 +296,9 @@ const InvestorLetter = () => {
 
   // Function to parse dates properly for sorting
   const parseDate = (dateStr) => {
+    console.log("Parsing date:", dateStr); // Add this line to check the value of dateStr
+    if (!dateStr) return new Date(); // Return current date if dateStr is undefined or null
+
     const [month, year] = dateStr.split(" ");
     return new Date(`${month} 1, ${year}`);
   };
@@ -303,8 +307,6 @@ const InvestorLetter = () => {
   const sortedLetters = [...investorLetter].sort(
     (a, b) => parseDate(b.month_year) - parseDate(a.month_year)
   );
-
-  const [selectedFilter, setSelectedFilter] = useState("");
 
   // Function to filter by Financial Year (April–March)
   const filteredLetters = sortedLetters.filter((letter) => {
@@ -317,13 +319,67 @@ const InvestorLetter = () => {
     const financialYearStart = new Date(`April 1, ${startYear}`);
     const financialYearEnd = new Date(`March 31, ${endYear}`);
 
-    // Get letter date
-    const letterDate = parseDate(letter.date);
+    // Extract year from letter.month_year (assumes format: "Month Year")
+    const letterYear = letter.month_year
+      ? parseDate(letter.month_year).getFullYear()
+      : null;
 
-    // Check if the letter falls within the financial year range
-    return letterDate >= financialYearStart && letterDate <= financialYearEnd;
+    console.log("Selected Filter:", selectedFilter);
+    console.log("Letter Year:", letterYear);
+
+    // If letter year is valid, check if it falls within the financial year range
+    return letterYear && letterYear >= startYear && letterYear <= endYear;
   });
 
+  // Generate year ranges from the filtered letters
+  const generateYearRanges = () => {
+    const years = filteredLetters
+      .map((letter) => {
+        const monthYear = letter.month_year || ""; // Default to an empty string if month_year is missing
+        if (monthYear && monthYear.split(" ").length === 2) {
+          const splitYear = monthYear.split(" ")[1]; // Extract year from the format "Month Year"
+          return splitYear ? splitYear : null; // Return the year if valid, otherwise null
+        }
+        return null;
+      })
+      .filter(Boolean); // Remove invalid entries (null or undefined)
+
+    // Remove duplicate years and sort them in descending order
+    const uniqueYears = [...new Set(years)].sort((a, b) => b - a);
+
+    // Generate the year ranges (e.g., "2024-2025", "2025-2026")
+    const ranges = uniqueYears
+      .map((year, index) => {
+        if (index === uniqueYears.length - 1) return null; // Ignore the last year for range
+        const startYear = year;
+        const endYear = (parseInt(year) + 1).toString();
+
+        // Check if both the start and end years are present in the filtered letters
+        const hasStartYear = filteredLetters.some(
+          (letter) =>
+            parseDate(letter.month_year).getFullYear() === parseInt(startYear)
+        );
+        const hasEndYear = filteredLetters.some(
+          (letter) =>
+            parseDate(letter.month_year).getFullYear() === parseInt(endYear)
+        );
+
+        // Only return the range if both years are present
+        return hasStartYear && hasEndYear ? `${startYear}-${endYear}` : null;
+      })
+      .filter(Boolean); // Filter out any null values
+
+    setYearRanges(ranges);
+  };
+
+  // Call generateYearRanges whenever the investorLetter state changes
+  useEffect(() => {
+    if (investorLetter.length > 0) {
+      generateYearRanges();
+    }
+  }, [investorLetter]);
+
+  // Handle clearing the filters
   const handleClearFilters = () => {
     setSelectedFilter("");
   };
@@ -338,16 +394,9 @@ const InvestorLetter = () => {
               src={`${process.env.PUBLIC_URL}/images/banners/Investor Letters.jpg`}
               alt="banner-img"
             />
-
             <div className="banner-content-div">
               <div className="container">
-                {/* <h6 className="banner-subtitle">Performance Review</h6> */}
-                <h1 className="banner-title"> Investor Letters</h1>
-                {/* <p className="banner-para">
-                  Investor letters are formal communications that provide
-                  shareholders with insights into a company's financial
-                  performance, strategic direction, and future outlook.
-                </p> */}
+                <h1 className="banner-title">Investor Letters</h1>
               </div>
             </div>
           </div>
@@ -365,15 +414,11 @@ const InvestorLetter = () => {
                   onChange={(e) => setSelectedFilter(e.target.value)}
                 >
                   <option value="">All Years</option>
-                  <option value="2024-2025">2024-2025</option>
-                  <option value="2023-2024">2023-2024</option>
-                  <option value="2022-2023">2022-2023</option>
-                  <option value="2021-2022">2021-2022</option>
-                  <option value="2020-2021">2020-2021</option>
-                  <option value="2019-2020">2019-2020</option>
-                  <option value="2018-2019">2018-2019</option>
-                  <option value="2017-2018">2017-2018</option>
-                  <option value="2016-2017">2016-2017</option>
+                  {yearRanges.map((yearRange, index) => (
+                    <option value={yearRange} key={index}>
+                      {yearRange}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -398,15 +443,9 @@ const InvestorLetter = () => {
                 >
                   <div className="letter-div mb-4">
                     <h5 className="section-subtitle">{letter.month_year}</h5>
-                    <h3>{letter.title}</h3>
-                    {/* <div className="letter-options py-3 pt-5">
-                    
-                      <i class="fa-solid fa-eye"></i>
-                   
-                    <a href={letter.filepath} download>
-                      <i className="fa-solid fa-cloud-arrow-down"></i>
-                    </a>
-                  </div> */}
+                    <h3>
+                      Piper Serica Leader Portfolio Strategy {letter.month_year}
+                    </h3>
                   </div>
                 </NavLink>
               </div>
