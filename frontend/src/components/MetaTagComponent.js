@@ -53,6 +53,18 @@ const MetaTagComponent = () => {
           metaTitle.content = metaTag.metaTitle || "Default Title";
           document.head.appendChild(metaTitle);
         }
+
+        // Add the canonical tag dynamically
+        const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
+        let linkCanonical = document.querySelector('link[rel="canonical"]');
+        if (linkCanonical) {
+          linkCanonical.setAttribute("href", canonicalUrl);
+        } else {
+          linkCanonical = document.createElement("link");
+          linkCanonical.rel = "canonical";
+          linkCanonical.href = canonicalUrl;
+          document.head.appendChild(linkCanonical);
+        }
       } catch (error) {
         console.error("Error fetching meta tag:", error);
       }
