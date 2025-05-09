@@ -10,6 +10,7 @@ import SubscribeLetter from "../../components/SubscribeLetter";
 import TestimonialVideoSection from "../../components/TestimonialVideo";
 import axios from "axios";
 import MetaTagComponent from "../../components/MetaTagComponent";
+import ArticleSection from "../../components/ArticleSection";
 const Startup = () => {
   const investorItem = [
     {
@@ -692,7 +693,7 @@ const Startup = () => {
       </section>
 
       <section className="py-5 mb-5">
-        <NewsSection />
+        <ArticleSection />
       </section>
 
       <SubscribeLetter />
