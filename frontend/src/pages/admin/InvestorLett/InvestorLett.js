@@ -87,11 +87,8 @@ const InvestorLett = () => {
                   {investorLetter &&
                     investorLetter.map((investorLetter) => (
                       <tr key={investorLetter._id}>
-                        {" "}
-                        <td>{investorLetter.title}</td>
-                        <td className="text-center">
-                          {investorLetter.month_year}
-                        </td>
+                        {/* <td>{investorLetter.title}</td> */}
+                        <td>{investorLetter.month_year}</td>
                         <td className="table-profile-img text-center">
                           <a
                             href={investorLetter.file_upload[0].filepath}
