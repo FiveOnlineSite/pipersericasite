@@ -51,6 +51,9 @@ import FactSheetForm from "./pages/admin/FactSheetForm";
 import PresentationForm from "./pages/admin/PresentationForm";
 import GatewaySvg from "./components/GatewaySvg";
 import EditFactsheetPresentation from "./pages/admin/FactsheetPresentation/EditFactsheetPresentation";
+import MetaTag from "./pages/admin/MetaTag/MetaTag";
+import AddMetaTag from "./pages/admin/MetaTag/AddMetaTag";
+import EditMetaTag from "./pages/admin/MetaTag/EditMetaTag";
 
 function App() {
   return (
@@ -148,6 +151,10 @@ function App() {
           <Route path="factsheet-form" element={<FactSheetForm />} />
 
           <Route path="presentation-form" element={<PresentationForm />} />
+
+          <Route path="meta-tag" element={<MetaTag />} />
+          <Route path="add/meta-tag" element={<AddMetaTag />} />
+          <Route path="edit/meta-tag/:id" element={<EditMetaTag />} />
         </Route>
       </Routes>
     </Router>

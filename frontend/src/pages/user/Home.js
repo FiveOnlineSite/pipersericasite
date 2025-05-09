@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import { NavLink, useLocation } from "react-router-dom";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Home = () => {
   const location = useLocation();
@@ -20,7 +21,9 @@ const Home = () => {
 
   return (
     <>
+      <MetaTagComponent />
       <Header />
+
       <section className="home-banner w-100 overflow-hidden">
         <div className="row">
           <div className="video-banner">

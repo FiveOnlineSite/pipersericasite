@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import StickyContact from "../../components/StickyContact";
 import FactsheetModal from "../../components/FactsheetModal";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const LeaderPortfolio = () => {
   const handleFilterChange = (e) => {
@@ -106,6 +107,7 @@ const LeaderPortfolio = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

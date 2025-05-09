@@ -9,6 +9,7 @@ import CompanySlider from "../../components/CompanySlider";
 import SubscribeLetter from "../../components/SubscribeLetter";
 import TestimonialVideoSection from "../../components/TestimonialVideo";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 const Startup = () => {
   const investorItem = [
     {
@@ -148,6 +149,7 @@ const Startup = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       {/* <section className="investor-banner-section">
         <div className="row">
           <Slider {...investorSettings}>

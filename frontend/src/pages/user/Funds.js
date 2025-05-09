@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import TestimonialVideoSection from "../../components/TestimonialVideo";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Funds = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -83,6 +84,7 @@ const Funds = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

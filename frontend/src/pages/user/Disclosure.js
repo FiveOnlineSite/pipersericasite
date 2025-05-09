@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import { Link, NavLink } from "react-router-dom";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Disclosure = () => {
   const [activeTab, setActiveTab] = useState("life");
@@ -86,6 +87,7 @@ const Disclosure = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

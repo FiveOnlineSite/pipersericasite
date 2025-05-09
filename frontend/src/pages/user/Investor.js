@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import NewsSection from "../../components/NewsSection";
 import SubscribeLetter from "../../components/SubscribeLetter";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Investor = () => {
   const investorItem = [
@@ -100,6 +101,8 @@ const Investor = () => {
 
   return (
     <Layout>
+      {" "}
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div bann-img-height">
@@ -132,7 +135,6 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       {/* <section className="investor-banner-section">
         <div className="row">
           <Slider {...investorSettings}>
@@ -161,7 +163,6 @@ const Investor = () => {
           </Slider>
         </div>
       </section> */}
-
       <section className="what-we-do-section">
         <div className="container">
           <div className="row">
@@ -201,7 +202,6 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       <section className="facts-section">
         <div className="container">
           <div className="row justify-content-center">
@@ -256,7 +256,6 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       <section className="why-us-section foreign-why-section">
         <div className="container">
           <div className="desktop-row">
@@ -531,7 +530,6 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       <section className="our-offerings-section" id="offerings">
         <div className="container">
           <div className="row align-items-center">
@@ -604,7 +602,6 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       <section className="outlook-section">
         <div className="container">
           <div className="row align-items-center">
@@ -630,13 +627,10 @@ const Investor = () => {
           </div>
         </div>
       </section>
-
       <section className="investor-news-section">
         <NewsSection />
       </section>
-
       <SubscribeLetter />
-
       <section className="contact-us-section">
         <div className="container">
           <div className="row align-items-center">

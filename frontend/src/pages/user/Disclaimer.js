@@ -1,9 +1,11 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Disclaimer = () => {
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section pb-0">
         <div className="row">
           <div className="banner-img-div other-banner-div">

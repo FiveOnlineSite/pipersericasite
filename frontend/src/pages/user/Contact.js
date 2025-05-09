@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 // import emailjs from "@emailjs/browser";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Contact = () => {
   // const formRef = useRef();
@@ -146,6 +147,7 @@ const Contact = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

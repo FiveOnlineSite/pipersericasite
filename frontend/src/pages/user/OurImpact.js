@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import NewsSection from "../../components/NewsSection";
 import { Link } from "react-router-dom";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const OurImpact = () => {
   const [activeTab, setActiveTab] = useState("life");
@@ -14,6 +15,7 @@ const OurImpact = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div bann-img-height">

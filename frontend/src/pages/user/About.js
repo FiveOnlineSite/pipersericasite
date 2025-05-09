@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import VerticalTabs from "../../components/templates/VerticalTabs";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const About = () => {
   const [openAccordion, setOpenAccordion] = useState(0);
@@ -180,7 +181,7 @@ const About = () => {
   // }, []);
 
   const [team, setTeam] = useState([]);
-
+  const [metaTag, setMetaTag] = useState([]);
   useEffect(() => {
     const fetchTeam = async () => {
       try {
@@ -203,6 +204,7 @@ const About = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section" id="banner-div">
         <div className="row">
           <div className="banner-img-div">

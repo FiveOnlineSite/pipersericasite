@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Insights = () => {
   const newsItems = [
@@ -63,6 +64,7 @@ const Insights = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

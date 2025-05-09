@@ -91,7 +91,11 @@ const AdminSidebar = () => {
               <span className="las la-users"></span> <span>Team</span>
             </NavLink>
           </li>
-
+          <li>
+            <NavLink to="/admin/meta-tag" title="Meta Tag">
+              <span className="las la-users"></span> <span>Meta Tag</span>
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/admin/contact-us" title="Career">
               <span className="las la-user-tie"></span> <span>Contact</span>

@@ -30,7 +30,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "frontend/build")));
+// app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use(cors());
 
@@ -61,6 +61,7 @@ app.use("/api/news-category", Route.newsCategoryRoute);
 app.use("/api/contact", Route.contactRoute);
 app.use("/api/factsheet-form", Route.factsheetFormRoute);
 app.use("/api/presentation-form", Route.presentationFormRoute);
+app.use("/api/meta-tag", Route.metaTagRoute);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -71,8 +72,14 @@ app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "public/sitemap.xml"));
 });
 
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+// });
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 // All other requests will be handled by React

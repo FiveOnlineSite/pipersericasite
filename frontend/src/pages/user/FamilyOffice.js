@@ -6,6 +6,7 @@ import OfferingsSlider from "../../components/OfferingsSlider";
 import NewsSection from "../../components/NewsSection";
 import SubscribeLetter from "../../components/SubscribeLetter";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const FamilyOffice = () => {
   const investorItem = [
@@ -101,6 +102,7 @@ const FamilyOffice = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div bann-img-height">

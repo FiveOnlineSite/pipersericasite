@@ -9,6 +9,7 @@ const newsCategoryRoute = require("./newsCategoryRoute");
 const contactRoute = require("./contactRoute");
 const factsheetFormRoute = require("./factsheetFormRoute");
 const presentationFormRoute = require("./presentationFormRoute");
+const metaTagRoute = require("./metaTagRoute");
 
 module.exports = {
   authRoute,
@@ -22,4 +23,5 @@ module.exports = {
   contactRoute,
   factsheetFormRoute,
   presentationFormRoute,
+  metaTagRoute,
 };

@@ -15,6 +15,7 @@ const DashBoard = () => {
   const [factsheetFormCount, setFactsheetFormCount] = useState("0");
   const [presentationFormCount, setPresentationFormCount] = useState("0");
   const [contactCount, setContactCount] = useState("0");
+  const [metaTagCount, setMetaTagCount] = useState("0");
 
   useEffect(() => {
     // Fetch service count
@@ -92,6 +93,15 @@ const DashBoard = () => {
         setTeamCount(count); // Update fundNumberCount state with count
       })
       .catch((error) => console.error("Error fetching team count:", error));
+
+    axios
+      .get(`${apiUrl}/api/meat-tag`)
+      .then((response) => {
+        const count = response.data.count;
+
+        setMetaTagCount(count); // Update fundNumberCount state with count
+      })
+      .catch((error) => console.error("Error fetching meta tag:", error));
 
     axios
       .get(`${apiUrl}/api/presentation-form`)
@@ -229,6 +239,20 @@ const DashBoard = () => {
                   </span>
                 </h2>
                 <h6>Total Team Members</h6>
+              </div>
+            </NavLink>
+          </div>
+
+          <div className="col-md-3">
+            <NavLink to="/admin/meta-tag" title="View Meta Tags">
+              <div className="dashboardcard">
+                <h2>
+                  {metaTagCount}
+                  <span>
+                    <i className="fa fa-eye" aria-hidden="true"></i>
+                  </span>
+                </h2>
+                <h6>Total Meta Tags</h6>
               </div>
             </NavLink>
           </div>

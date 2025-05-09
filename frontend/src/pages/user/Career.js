@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import TestimonialSlider from "../../components/TestimonialSlider";
 import emailjs from "@emailjs/browser";
 import { Modal } from "react-bootstrap";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const Career = () => {
   const settings = {
@@ -281,6 +282,7 @@ const Career = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

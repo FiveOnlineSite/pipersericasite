@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import StickyContact from "../../components/StickyContact";
 import FactsheetModal from "../../components/FactsheetModal";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const PublicFund = () => {
   const handleFilterChange = (e) => {
@@ -105,6 +106,7 @@ const PublicFund = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">

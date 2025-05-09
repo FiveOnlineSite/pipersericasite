@@ -1,10 +1,12 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import { Link } from "react-router-dom";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const PrivacyPolicy = () => {
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section pb-0">
         <div className="row">
           <div className="banner-img-div other-banner-div">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import { NavLink, useLocation } from "react-router-dom";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const MarketFunds = () => {
   // State to track the active tab
@@ -26,6 +27,7 @@ const MarketFunds = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section pb-0">
         <div className="row">
           <div className="banner-img-div">

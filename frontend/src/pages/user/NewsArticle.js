@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import MetaTagComponent from "../../components/MetaTagComponent";
 
 const NewsArticle = () => {
   const [selectedFilter, setSelectedFilter] = useState("");
@@ -355,6 +356,7 @@ const NewsArticle = () => {
 
   return (
     <Layout>
+      <MetaTagComponent />
       <section className="banner-section">
         <div className="row">
           <div className="banner-img-div">
