@@ -285,7 +285,12 @@ const InvestorLetter = () => {
           baseURL: `${apiUrl}/api/`,
           url: "investor-letter",
         });
-        setInvestorLetter(response.data.investorLetter);
+
+        const sortedLetters = response.data.investorLetter.sort(
+          (a, b) => new Date(b.month_year) - new Date(a.month_year)
+        );
+        setInvestorLetter(sortedLetters);
+        // setInvestorLetter(response.data.investorLetter);
       } catch (error) {
         console.error("Error fetching investor letter", error);
       }
@@ -296,11 +301,11 @@ const InvestorLetter = () => {
 
   // Function to parse dates properly for sorting
   const parseDate = (dateStr) => {
-    console.log("Parsing date:", dateStr); // Add this line to check the value of dateStr
-    if (!dateStr) return new Date(); // Return current date if dateStr is undefined or null
+    if (!dateStr) return new Date();
 
-    const [month, year] = dateStr.split(" ");
-    return new Date(`${month} 1, ${year}`);
+    // Ensure MM-DD-YYYY is parsed correctly
+    const [month, day, year] = dateStr.split("-");
+    return new Date(`${year}-${month}-${day}`); // Convert to ISO-compatible
   };
 
   // Sort letters by date (latest first)
@@ -310,64 +315,41 @@ const InvestorLetter = () => {
 
   // Function to filter by Financial Year (April–March)
   const filteredLetters = sortedLetters.filter((letter) => {
-    if (!selectedFilter) return true; // Show all if no filter is selected
+    if (!selectedFilter) return true;
 
-    // Extract financial year start and end
     const [startYear, endYear] = selectedFilter.split("-").map(Number);
+    const financialYearStart = new Date(`${endYear}-04-01`);
+    const financialYearEnd = new Date(`${startYear}-03-31`);
 
-    // Define financial year start (April YYYY) and end (March YYYY+1)
-    const financialYearStart = new Date(`April 1, ${startYear}`);
-    const financialYearEnd = new Date(`March 31, ${endYear}`);
+    const letterDate = parseDate(letter.month_year);
 
-    // Extract year from letter.month_year (assumes format: "Month Year")
-    const letterYear = letter.month_year
-      ? parseDate(letter.month_year).getFullYear()
-      : null;
-
-    console.log("Selected Filter:", selectedFilter);
-    console.log("Letter Year:", letterYear);
-
-    // If letter year is valid, check if it falls within the financial year range
-    return letterYear && letterYear >= startYear && letterYear <= endYear;
+    return letterDate >= financialYearStart && letterDate <= financialYearEnd;
   });
 
   // Generate year ranges from the filtered letters
   const generateYearRanges = () => {
-    const years = filteredLetters
-      .map((letter) => {
-        const monthYear = letter.month_year || ""; // Default to an empty string if month_year is missing
-        if (monthYear && monthYear.split(" ").length === 2) {
-          const splitYear = monthYear.split(" ")[1]; // Extract year from the format "Month Year"
-          return splitYear ? splitYear : null; // Return the year if valid, otherwise null
-        }
-        return null;
-      })
-      .filter(Boolean); // Remove invalid entries (null or undefined)
+    const years = investorLetter
+      .map((letter) => parseDate(letter.month_year).getFullYear())
+      .filter(Boolean);
 
-    // Remove duplicate years and sort them in descending order
     const uniqueYears = [...new Set(years)].sort((a, b) => b - a);
 
-    // Generate the year ranges (e.g., "2024-2025", "2025-2026")
     const ranges = uniqueYears
       .map((year, index) => {
-        if (index === uniqueYears.length - 1) return null; // Ignore the last year for range
-        const startYear = year;
-        const endYear = (parseInt(year) + 1).toString();
+        if (index === uniqueYears.length - 1) return null;
+        const startYear = uniqueYears[index + 1];
+        const endYear = year;
 
-        // Check if both the start and end years are present in the filtered letters
-        const hasStartYear = filteredLetters.some(
-          (letter) =>
-            parseDate(letter.month_year).getFullYear() === parseInt(startYear)
+        const hasStartYear = investorLetter.some(
+          (letter) => parseDate(letter.month_year).getFullYear() === startYear
         );
-        const hasEndYear = filteredLetters.some(
-          (letter) =>
-            parseDate(letter.month_year).getFullYear() === parseInt(endYear)
+        const hasEndYear = investorLetter.some(
+          (letter) => parseDate(letter.month_year).getFullYear() === endYear
         );
 
-        // Only return the range if both years are present
-        return hasStartYear && hasEndYear ? `${startYear}-${endYear}` : null;
+        return hasStartYear && hasEndYear ? `${endYear}-${startYear}` : null;
       })
-      .filter(Boolean); // Filter out any null values
+      .filter(Boolean);
 
     setYearRanges(ranges);
   };
@@ -442,9 +424,18 @@ const InvestorLetter = () => {
                   target="_blank"
                 >
                   <div className="letter-div mb-4">
-                    <h5 className="section-subtitle">{letter.month_year}</h5>
+                    <h5 className="section-subtitle">
+                      {new Date(letter.month_year).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                      })}
+                    </h5>
                     <h3>
-                      Piper Serica Leader Portfolio Strategy {letter.month_year}
+                      Piper Serica Leader Portfolio Strategy{" "}
+                      {new Date(letter.month_year).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                      })}
                     </h3>
                   </div>
                 </NavLink>

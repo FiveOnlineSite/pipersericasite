@@ -29,7 +29,11 @@ const NewsCategory = () => {
     fetchNewsCategory();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, category) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${category}" category ?`
+    );
+    if (!confirmDelete) return; // Exit if user cancels
     try {
       const access_token = localStorage.getItem("access_token");
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -98,7 +102,12 @@ const NewsCategory = () => {
                         <td className="text-center">
                           <button
                             className="delete-btn"
-                            onClick={() => handleDelete(newsCategory._id)}
+                            onClick={() =>
+                              handleDelete(
+                                newsCategory._id,
+                                newsCategory.news_category
+                              )
+                            }
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>

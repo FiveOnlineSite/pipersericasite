@@ -5,7 +5,7 @@ const route = express.Router();
 
 route.post(
   "/",
-  adminMiddleware,
+
   presentationFormController.createPresentationForm
 );
 

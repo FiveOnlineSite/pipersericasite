@@ -83,7 +83,7 @@ const FundNumber = () => {
                     <th className="text-center">Fund Subtitle</th>
                     <th className="text-center">Fund Figures</th>
                     <th className="text-center">Edit</th>
-                    <th className="text-center">Delete</th>
+                    {/* <th className="text-center">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -134,14 +134,14 @@ const FundNumber = () => {
                             <i className="las la-pencil-alt"></i>
                           </Link>
                         </td>
-                        <td className="text-center">
+                        {/* <td className="text-center">
                           <button
                             className="delete-btn"
                             onClick={() => handleDelete(fundNumber._id)}
                           >
                             <i className="las la-trash"></i>{" "}
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>

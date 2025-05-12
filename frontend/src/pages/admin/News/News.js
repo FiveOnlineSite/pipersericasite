@@ -5,6 +5,7 @@ import axios from "axios";
 
 const News = () => {
   const [news, setNews] = useState([]);
+  const [date, setDate] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,8 +20,12 @@ const News = () => {
           baseURL: `${apiUrl}/api/`,
           url: "news",
         });
+        const sortedNews = response.data.news.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+        setNews(sortedNews);
         console.log(response.data.news);
-        setNews(response.data.news);
+        // setNews(response.data.news);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -29,7 +34,12 @@ const News = () => {
     fetchNews();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, newsName) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${newsName}" news ?`
+    );
+    if (!confirmDelete) return; // Exit if user cancels
+
     try {
       const access_token = localStorage.getItem("access_token");
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -117,7 +127,7 @@ const News = () => {
                         <td className="text-center">
                           <button
                             className="delete-btn"
-                            onClick={() => handleDelete(news._id)}
+                            onClick={() => handleDelete(news._id, news.title)}
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>

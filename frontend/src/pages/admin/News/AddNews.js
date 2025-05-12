@@ -34,11 +34,16 @@ const AddNews = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formattedMonthYear = (() => {
+      if (!date) return "";
+      const [year, month, day] = date.split("-");
+      return `${month}-${day}-${year}`;
+    })();
 
     try {
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("date", date);
+      formData.append("date", formattedMonthYear);
       formData.append("news_url", newsURL);
       formData.append("news_category_id", selectedNewsCategory);
 
@@ -116,10 +121,11 @@ const AddNews = () => {
                 <label>Date</label>
 
                 <input
-                  type="text"
+                  type="date"
                   name="date"
                   required
                   value={date}
+                  max={new Date().toISOString().split("T")[0]} // This restricts future dates
                   onChange={(e) => {
                     setDate(e.target.value);
                   }}

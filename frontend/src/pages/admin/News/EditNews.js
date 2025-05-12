@@ -46,7 +46,10 @@ const EditNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       const apiUrl = process.env.REACT_APP_API_URL;
-
+      const convertDateForInput = (dateStr) => {
+        const [mm, dd, yyyy] = dateStr.split("-");
+        return `${yyyy}-${mm}-${dd}`;
+      };
       try {
         const response = await axios({
           method: "GET",
@@ -66,7 +69,7 @@ const EditNews = () => {
         setFormData({
           title: newsData.title || "",
           news_category_id: newsData.news_category_id || "",
-          date: newsData.date || "",
+          date: newsData.date ? convertDateForInput(newsData.date) : "",
           news_url: newsData.news_url || "",
           thumbnail: {
             filename: newsData.thumbnail?.[0]?.filename || "",
@@ -110,13 +113,18 @@ const EditNews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const convertDateToDisplayFormat = (isoDate) => {
+      const [yyyy, mm, dd] = isoDate.split("-");
+      return `${mm}-${dd}-${yyyy}`;
+    };
+
     try {
       const formDataToSend = new FormData();
 
       formDataToSend.append("news_category_id", formData.news_category_id);
 
       formDataToSend.append("title", formData.title);
-      formDataToSend.append("date", formData.date);
+      formDataToSend.append("date", convertDateToDisplayFormat(formData.date));
       formDataToSend.append("news_url", formData.news_url);
 
       if (formData.thumbnail.file) {
@@ -200,10 +208,11 @@ const EditNews = () => {
                   <label>Date</label>
 
                   <input
-                    type="text"
+                    type="date"
                     name="date"
                     required
                     value={formData.date}
+                    max={new Date().toISOString().split("T")[0]} // This restricts future dates
                     onChange={handleChange}
                   />
                 </div>

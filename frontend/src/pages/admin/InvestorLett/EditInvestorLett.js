@@ -22,7 +22,10 @@ const EditInvestorLett = () => {
   useEffect(() => {
     const fetchInvestorLetter = async () => {
       const apiUrl = process.env.REACT_APP_API_URL;
-
+      const convertDateForInput = (dateStr) => {
+        const [mm, dd, yyyy] = dateStr.split("-");
+        return `${yyyy}-${mm}-${dd}`;
+      };
       try {
         const response = await axios({
           method: "GET",
@@ -36,7 +39,10 @@ const EditInvestorLett = () => {
         // Set the form data directly
         setFormData({
           title: data.title || "",
-          month_year: data.month_year || "",
+          // month_year: data.month_year || "",
+          month_year: data.month_year
+            ? convertDateForInput(data.month_year)
+            : "",
           file_upload: {
             filename: data.file_upload?.[0]?.filename || "",
             filepath: data.file_upload?.[0]?.filepath || "",
@@ -73,13 +79,20 @@ const EditInvestorLett = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const convertDateToDisplayFormat = (isoDate) => {
+      const [yyyy, mm, dd] = isoDate.split("-");
+      return `${mm}-${dd}-${yyyy}`;
+    };
     try {
       const formDataToSend = new FormData();
 
       formDataToSend.append("title", formData.title);
 
-      formDataToSend.append("month_year", formData.month_year);
+      // formDataToSend.append("month_year", formData.month_year);
+      formDataToSend.append(
+        "month_year",
+        convertDateToDisplayFormat(formData.month_year)
+      );
 
       if (formData.file_upload.file) {
         formDataToSend.append("file_upload", formData.file_upload.file);
@@ -139,8 +152,9 @@ const EditInvestorLett = () => {
                 <label>Month/Year</label>
 
                 <input
-                  type="text"
+                  type="date"
                   name="month_year"
+                  max={new Date().toISOString().split("T")[0]} // This restricts future dates
                   required
                   value={formData.month_year}
                   onChange={handleChange}

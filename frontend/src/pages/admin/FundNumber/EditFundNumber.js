@@ -116,7 +116,7 @@ const EditFundNumber = () => {
                   required
                   name="fund_name"
                   value={formData.fund_name}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
                   <option value="">Select a Fund / Investor</option>
                   <option value="PMS">PMS</option>

@@ -712,9 +712,17 @@ const About = () => {
                     <div className="team-content">
                       <div className="team-title-div">
                         <h3 className="section-title team-name">{team.name}</h3>
-                        <NavLink to={team.linkedin_url} target="_blank">
+                        <a
+                          href={
+                            team.linkedin_url.startsWith("http")
+                              ? team.linkedin_url
+                              : `https://${team.linkedin_url}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <i className="fa-brands fa-linkedin"></i>
-                        </NavLink>
+                        </a>
                       </div>
 
                       <h5 className="section-subtitle small-txt">

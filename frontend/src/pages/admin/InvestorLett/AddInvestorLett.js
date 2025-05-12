@@ -13,11 +13,16 @@ const AddInvestorLett = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formattedMonthYear = (() => {
+      if (!monthYear) return "";
+      const [year, month, day] = monthYear.split("-");
+      return `${month}-${day}-${year}`;
+    })();
 
     try {
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("month_year", monthYear);
+      formData.append("month_year", formattedMonthYear);
 
       if (fileUpload?.file) {
         formData.append("file_upload", fileUpload.file);
@@ -78,9 +83,10 @@ const AddInvestorLett = () => {
                 <label>Month/Year</label>
 
                 <input
-                  type="text"
+                  type="date"
                   name="month_year"
                   required
+                  max={new Date().toISOString().split("T")[0]} // This restricts future dates
                   value={monthYear}
                   onChange={(e) => setMonthYear(e.target.value)}
                 />

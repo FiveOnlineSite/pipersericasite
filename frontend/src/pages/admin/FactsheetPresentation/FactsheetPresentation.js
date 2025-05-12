@@ -86,7 +86,7 @@ const FactsheetPresentation = () => {
                     <th className="text-center">Factsheet / Presentation</th>
                     <th className="text-center">File</th>
                     <th className="text-center">Edit</th>
-                    <th className="text-center">Delete</th>
+                    {/* <th className="text-center">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -114,7 +114,7 @@ const FactsheetPresentation = () => {
                             <i className="las la-pencil-alt"></i>
                           </Link>
                         </td>
-                        <td className="text-center">
+                        {/* <td className="text-center">
                           <button
                             className="delete-btn"
                             onClick={() =>
@@ -123,7 +123,7 @@ const FactsheetPresentation = () => {
                           >
                             <i className="las la-trash"></i>{" "}
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>

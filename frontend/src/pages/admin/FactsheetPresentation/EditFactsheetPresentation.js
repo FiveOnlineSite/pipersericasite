@@ -135,7 +135,7 @@ const EditFactsheetPresentation = () => {
                 <select
                   name="fund_name"
                   value={formData.fund_name}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
                   <option value="">Select a Fund</option>
                   <option value="PMS">PMS</option>
@@ -150,7 +150,7 @@ const EditFactsheetPresentation = () => {
                 <select
                   name="option"
                   value={formData.option}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
                   <option value="">Select a option</option>
                   <option value="Factsheet">Factsheet</option>

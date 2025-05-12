@@ -22,13 +22,12 @@ const InvestorLett = () => {
         });
         console.log(response.data.investorLetter);
         // Sorting by year in descending order
-        const sortedLetters = response.data.investorLetter.sort((a, b) => {
-          const yearA = parseInt(a.month_year.split(" ")[1]);
-          const yearB = parseInt(b.month_year.split(" ")[1]);
-          return yearB - yearA; // descending order
-        });
-
+        const sortedLetters = response.data.investorLetter.sort(
+          (a, b) => new Date(b.month_year) - new Date(a.month_year)
+        );
         setInvestorLetter(sortedLetters);
+
+        // setInvestorLetter(sortedLetters);
       } catch (error) {
         console.error("Error fetching investor letter:", error);
       }
@@ -37,7 +36,11 @@ const InvestorLett = () => {
     fetchInvestorLetter();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, name) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${name}" investor letter ?`
+    );
+    if (!confirmDelete) return; // Exit if user cancels
     try {
       const access_token = localStorage.getItem("access_token");
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -94,7 +97,15 @@ const InvestorLett = () => {
                     investorLetter.map((investorLetter) => (
                       <tr key={investorLetter._id}>
                         {/* <td>{investorLetter.title}</td> */}
-                        <td>{investorLetter.month_year}</td>
+                        <td>
+                          {" "}
+                          {new Date(
+                            investorLetter.month_year
+                          ).toLocaleDateString("en-US", {
+                            month: "long",
+                            year: "numeric",
+                          })}
+                        </td>
                         <td className="table-profile-img text-center">
                           <a
                             href={investorLetter.file_upload[0].filepath}
@@ -115,7 +126,12 @@ const InvestorLett = () => {
                         <td className="text-center">
                           <button
                             className="delete-btn"
-                            onClick={() => handleDelete(investorLetter._id)}
+                            onClick={() =>
+                              handleDelete(
+                                investorLetter._id,
+                                investorLetter.file_upload[0].filename
+                              )
+                            }
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>

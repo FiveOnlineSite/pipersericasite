@@ -3,7 +3,7 @@ const express = require("express");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 const route = express.Router();
 
-route.post("/", adminMiddleware, contactController.createContact);
+route.post("/", contactController.createContact);
 
 route.get("/", contactController.getContacts);
 

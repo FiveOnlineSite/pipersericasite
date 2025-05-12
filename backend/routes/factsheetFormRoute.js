@@ -3,7 +3,7 @@ const express = require("express");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 const route = express.Router();
 
-route.post("/", adminMiddleware, factsheetFormController.createFactsheetForm);
+route.post("/", factsheetFormController.createFactsheetForm);
 
 route.get("/", factsheetFormController.getFactsheetForms);
 

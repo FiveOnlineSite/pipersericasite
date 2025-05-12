@@ -29,7 +29,11 @@ const Team = () => {
     fetchTeam();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, name) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${name}" from team ?`
+    );
+    if (!confirmDelete) return; // Exit if user cancels
     try {
       const access_token = localStorage.getItem("access_token");
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -105,7 +109,7 @@ const Team = () => {
                         <td className="text-center">
                           <button
                             className="delete-btn"
-                            onClick={() => handleDelete(team._id)}
+                            onClick={() => handleDelete(team._id, team.name)}
                           >
                             <i class="las la-trash"></i>{" "}
                           </button>

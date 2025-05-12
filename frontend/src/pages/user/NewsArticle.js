@@ -434,7 +434,13 @@ const NewsArticle = () => {
                     <div className="news-content-div">
                       <h5>{item.news_category_id.news_category}</h5>
                       <h3 className="section-title mt-3">{item.title}</h3>
-                      <h6 className="mt-5">{item.date}</h6>
+                      <h6 className="mt-5">
+                        {new Date(item.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </h6>
                     </div>
                   </div>
                 </NavLink>
