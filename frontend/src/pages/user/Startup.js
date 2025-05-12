@@ -262,7 +262,10 @@ const Startup = () => {
                           <h6 className="para">
                             {fundNumbers.fund_title1}
                             {/* <i> (as of 30 June 2024)</i> */}
-                          </h6>
+                          </h6>{" "}
+                          <p className="facts-small">
+                            {fundNumbers.fund_subtitle1}
+                          </p>
                         </div>
                       </div>
                       <div className="col-lg-4 mt-lg-0 mt-4">
@@ -273,7 +276,10 @@ const Startup = () => {
                           <h6 className="para">
                             {fundNumbers.fund_title2}
                             {/* <i> (as of 30 June 2024)</i> */}
-                          </h6>
+                          </h6>{" "}
+                          <p className="facts-small">
+                            {fundNumbers.fund_subtitle2}
+                          </p>
                         </div>
                       </div>
                       <div className="col-lg-4 mt-lg-0 mt-4">
