@@ -543,12 +543,12 @@ const NewsSection = () => {
     },
   ];
   // Sort the newsItems by date in descending order (latest first)
-  const sortedNewsItems = [...newsItems].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+  // const sortedNewsItems = [...newsItems].sort(
+  //   (a, b) => new Date(b.date) - new Date(a.date)
+  // );
 
-  // Slice to get the top 6 latest news
-  const newsItemsOne = sortedNewsItems.slice(0, 6);
+  // // Slice to get the top 6 latest news
+  // const newsItemsOne = sortedNewsItems.slice(0, 6);
 
   return (
     <div className="news-insights-section pb-5">
@@ -569,7 +569,7 @@ const NewsSection = () => {
           </div>
 
           <div className="row mt-5">
-            <NewsSlider settings={newsSettings} item={newsItemsOne} />
+            <NewsSlider settings={newsSettings} />
           </div>
         </div>
       </div>

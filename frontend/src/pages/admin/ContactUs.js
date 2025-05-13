@@ -19,8 +19,14 @@ const ContactUs = () => {
           baseURL: `${apiUrl}/api/`,
           url: "contact",
         });
+
+        const contactData = response.data.contacts;
+
+        const sortedContact = [...contactData].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
         console.log(response.data.contacts);
-        setContact(response.data.contacts);
+        setContact(sortedContact);
       } catch (error) {
         console.error("Error fetching contact:", error);
       }

@@ -420,7 +420,15 @@ const NewsArticle = () => {
                 className="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-3 mt-5"
                 key={index}
               >
-                <NavLink to={item.news_url} target="_blank">
+                <a
+                  href={
+                    item.news_url.startsWith("http")
+                      ? item.news_url
+                      : `https://${item.news_url}`
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <div className="news-div mt-4">
                     <div className="news-img-div">
                       <img
@@ -443,7 +451,7 @@ const NewsArticle = () => {
                       </h6>
                     </div>
                   </div>
-                </NavLink>
+                </a>
               </div>
             ))}
           </div>

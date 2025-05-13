@@ -19,8 +19,15 @@ const FactSheetForm = () => {
           baseURL: `${apiUrl}/api/`,
           url: "factsheet-form",
         });
+
+        const factsheetFormData = response.data.factsheetform;
+
+        const sortedFactsheetForm = [...factsheetFormData].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+
         console.log(response.data.factsheetform);
-        setFactsheetForm(response.data.factsheetform);
+        setFactsheetForm(sortedFactsheetForm);
       } catch (error) {
         console.error("Error fetching factsheet form:", error);
       }

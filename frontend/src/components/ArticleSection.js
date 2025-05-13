@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NewsSlider from "./NewsSlider";
+import axios from "axios";
+import AngelSlider from "./AngelSlider";
 
 const ArticleSection = () => {
   const articleSettings = {
@@ -376,17 +378,54 @@ const ArticleSection = () => {
     // },
   ];
 
-  const filteredNewsItems = articleItems.filter(
-    (item) => item.content_type === "Angel Fund"
-  );
+  const [news, setNews] = useState([]);
 
-  // Sort the newsItems by date in descending order (latest first)
-  const sortedNewsItems = [...filteredNewsItems].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
 
-  // Slice to get the top 6 latest news
-  const newsItemsOne = sortedNewsItems.slice(0, 6);
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `news`,
+        });
+
+        const newsData = response.data.news;
+
+        const filteredNewsItems = newsData.filter(
+          (item) => item.news_category_id.news_category === "Angel Fund"
+        );
+
+        // Sort the newsItems by date in descending order (latest first)
+        const sortedNewsItems = [...filteredNewsItems].sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+
+        // Slice to get the top 6 latest news
+        const newsItemsOne = sortedNewsItems.slice(0, 6);
+        console.log("News", response.data.news);
+        setNews(newsItemsOne);
+      } catch (error) {
+        console.error("Error fetching news", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  // const filteredNewsItems = articleItems.filter(
+  //   (item) => item.content_type === "Angel Fund"
+  // );
+
+  // // Sort the newsItems by date in descending order (latest first)
+  // const sortedNewsItems = [...filteredNewsItems].sort(
+  //   (a, b) => new Date(b.date) - new Date(a.date)
+  // );
+
+  // // Slice to get the top 6 latest news
+  // const newsItemsOne = sortedNewsItems.slice(0, 6);
 
   return (
     <div className="news-insights-section pb-5">
@@ -407,7 +446,7 @@ const ArticleSection = () => {
           </div>
 
           <div className="row mt-5">
-            <NewsSlider settings={articleSettings} item={newsItemsOne} />
+            <AngelSlider settings={articleSettings} />
           </div>
         </div>
       </div>
