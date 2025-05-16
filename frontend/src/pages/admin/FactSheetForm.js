@@ -5,6 +5,7 @@ import axios from "axios";
 
 const FactSheetForm = () => {
   const [factsheetForm, setFactsheetForm] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
 
@@ -64,10 +65,31 @@ const FactSheetForm = () => {
       console.error("Error deleting factsheet form:", error);
     }
   };
+
+  const filteredFactsheetForm = factsheetForm.filter((c) =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <AdminLayout>
       <div className="pages-headers ">
-        <h2>Factsheet Form</h2>
+        <div className="row">
+          <div className="col-lg-6">
+            <h2>Factsheet Form</h2>
+          </div>
+          <div className="col-lg-6">
+            <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search by name"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </form>
+          </div>
+        </div>
       </div>
       <div className="row mobilerows">
         <div className="col-md-12">
@@ -85,8 +107,8 @@ const FactSheetForm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {factsheetForm &&
-                    factsheetForm.map((factsheetForm) => (
+                  {filteredFactsheetForm.length > 0 ? (
+                    filteredFactsheetForm.map((factsheetForm) => (
                       <tr key={factsheetForm._id}>
                         <td>{factsheetForm.name}</td>
                         <td className="text-center">{factsheetForm.email}</td>
@@ -123,7 +145,14 @@ const FactSheetForm = () => {
                           </button>
                         </td> */}
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="text-center">
+                        No factsheet data found.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

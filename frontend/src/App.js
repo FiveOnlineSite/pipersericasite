@@ -54,6 +54,9 @@ import EditFactsheetPresentation from "./pages/admin/FactsheetPresentation/EditF
 import MetaTag from "./pages/admin/MetaTag/MetaTag";
 import AddMetaTag from "./pages/admin/MetaTag/AddMetaTag";
 import EditMetaTag from "./pages/admin/MetaTag/EditMetaTag";
+import Industry from "./pages/admin/Industry/Industry";
+import AddIndustry from "./pages/admin/Industry/AddIndustry";
+import EditIndustry from "./pages/admin/Industry/EditIndustry";
 
 function App() {
   return (
@@ -155,6 +158,10 @@ function App() {
           <Route path="meta-tag" element={<MetaTag />} />
           <Route path="add/meta-tag" element={<AddMetaTag />} />
           <Route path="edit/meta-tag/:id" element={<EditMetaTag />} />
+
+          <Route path="industry" element={<Industry />} />
+          <Route path="add/industry" element={<AddIndustry />} />
+          <Route path="edit/industry/:id" element={<EditIndustry />} />
         </Route>
       </Routes>
     </Router>

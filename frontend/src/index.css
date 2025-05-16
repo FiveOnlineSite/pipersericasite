@@ -1014,13 +1014,19 @@ body {
   padding: 50px 0;
 }
 
+.news-img-div {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+}
+
 .news-img-div,
 .news-img {
   position: relative;
 }
 
 .news-img {
-  height: 200px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -2300,6 +2306,24 @@ form .form-label span {
   overflow: visible; */
   max-width: 100%;
   overflow: hidden;
+}
+
+/* styles.css or your component CSS */
+.loader-logo {
+  width: 100px;
+  height: 100px;
+  animation: spin 1.5s linear infinite;
+  margin: 0 auto;
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 1300px) {

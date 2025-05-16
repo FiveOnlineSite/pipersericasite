@@ -7,10 +7,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -31,6 +33,7 @@ const Login = () => {
       setErrorMessage("Invalid email or password. Please try again.");
 
       setSuccessMessage(""); // Clear any previous success message
+      setLoading(false);
       // setTimeout(() => {
       //   navigate("/");
       // }, 2000);
@@ -44,52 +47,63 @@ const Login = () => {
           <div className="col-md-3"></div>
           <div className="col-md-6">
             <div className="form-white-bg">
-              <form onSubmit={handleLogin}>
-                <div className="row">
-                  <div className="col-md-12 text-center mb-4">
-                    <h3>Piper Serica</h3>
-                  </div>
-                  <div className="col-md-12">
-                    <div className="theme-form">
-                      <label>Email Id</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-12">
-                    <div className="theme-form">
-                      <label>Password</label>
-                      <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  {errorMessage && (
-                    <div className="error-message text-danger mt-2">
-                      {errorMessage}
-                    </div>
-                  )}
-                  {successMessage && (
-                    <div className="success-message text-success mt-2">
-                      {successMessage}
-                    </div>
-                  )}
-                  <div className="col-md-12">
-                    <div className="theme-form">
-                      <button type="submit">Login</button>
-                    </div>
-                  </div>
+              {loading ? (
+                <div className="text-center p-5">
+                  <img
+                    src="/images/Piper-Serica-logo.png"
+                    alt="Loading..."
+                    className="loader-logo"
+                  />
+                  {/* <p className="mt-3">Logging in, please wait...</p> */}
                 </div>
-              </form>
+              ) : (
+                <form onSubmit={handleLogin}>
+                  <div className="row">
+                    <div className="col-md-12 text-center mb-4">
+                      <h3>Piper Serica</h3>
+                    </div>
+                    <div className="col-md-12">
+                      <div className="theme-form">
+                        <label>Email Id</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={email}
+                          required
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-12">
+                      <div className="theme-form">
+                        <label>Password</label>
+                        <input
+                          type="password"
+                          name="password"
+                          value={password}
+                          required
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    {errorMessage && (
+                      <div className="error-message text-danger mt-2">
+                        {errorMessage}
+                      </div>
+                    )}
+                    {successMessage && (
+                      <div className="success-message text-success mt-2">
+                        {successMessage}
+                      </div>
+                    )}
+                    <div className="col-md-12">
+                      <div className="theme-form">
+                        <button type="submit">Login</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>

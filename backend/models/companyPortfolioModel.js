@@ -10,6 +10,11 @@ const CompanyPortfolioSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  industry: {
+    type: mongoose.Types.ObjectId,
+    ref: "Company Industry",
+    required: true,
+  },
   company_name: {
     type: String,
     required: true,

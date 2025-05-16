@@ -5,6 +5,7 @@ import axios from "axios";
 
 const PresentationForm = () => {
   const [presentationForm, setPresentationForm] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
 
@@ -65,10 +66,29 @@ const PresentationForm = () => {
       console.error("Error deleting presentation form:", error);
     }
   };
+  const filteredPresentationForm = presentationForm.filter((c) =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <AdminLayout>
       <div className="pages-headers ">
-        <h2>Presentation Form</h2>
+        <div className="row">
+          <div className="col-lg-6">
+            <h2>Presentation Form</h2>
+          </div>
+          <div className="col-lg-6">
+            <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search by name"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </form>
+          </div>
+        </div>
       </div>
       <div className="row mobilerows">
         <div className="col-md-12">
@@ -86,8 +106,8 @@ const PresentationForm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {presentationForm &&
-                    presentationForm.map((presentationForm) => (
+                  {filteredPresentationForm.length > 0 ? (
+                    filteredPresentationForm.map((presentationForm) => (
                       <tr key={presentationForm._id}>
                         <td>{presentationForm.name}</td>
                         <td className="text-center">
@@ -124,7 +144,14 @@ const PresentationForm = () => {
                           </button>
                         </td> */}
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="text-center">
+                        No presentation data found.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

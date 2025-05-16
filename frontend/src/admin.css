@@ -309,6 +309,7 @@ main {
 }
 .table-profile-img img {
   width: 50px;
+  object-fit: contain;
 }
 .pages-headers {
   margin-bottom: 30px;

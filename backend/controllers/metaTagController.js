@@ -2,13 +2,14 @@
 const MetaTagModel = require("../models/metaTagModel");
 
 const createMetaTag = async (req, res) => {
-  const { page, metaTitle, metaDescription } = req.body;
+  const { page, metaTitle, metaDescription, metaKeyword } = req.body;
 
   try {
     const newMetaTag = new MetaTagModel({
       page,
       metaTitle,
       metaDescription,
+      metaKeyword,
     });
 
     await newMetaTag.save();
@@ -61,7 +62,7 @@ const getMetaTagByPage = async (req, res) => {
 
 const updateMetaTag = async (req, res) => {
   try {
-    const { page, metaTitle, metaDescription } = req.body;
+    const { page, metaTitle, metaDescription, metaKeyword } = req.body;
 
     const metaTag = await MetaTagModel.findById(req.params._id);
 
@@ -75,6 +76,7 @@ const updateMetaTag = async (req, res) => {
       ...(page && { page }),
       ...(metaTitle && { metaTitle }),
       ...(metaDescription && { metaDescription }),
+      ...(metaKeyword && { metaKeyword }),
     };
 
     const updatedMetaTag = await MetaTagModel.findByIdAndUpdate(

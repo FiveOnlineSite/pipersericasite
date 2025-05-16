@@ -62,6 +62,7 @@ app.use("/api/contact", Route.contactRoute);
 app.use("/api/factsheet-form", Route.factsheetFormRoute);
 app.use("/api/presentation-form", Route.presentationFormRoute);
 app.use("/api/meta-tag", Route.metaTagRoute);
+app.use("/api/industry", Route.industryRoute);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

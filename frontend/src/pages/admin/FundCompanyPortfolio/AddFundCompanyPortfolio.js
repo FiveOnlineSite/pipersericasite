@@ -5,12 +5,35 @@ import axios from "axios";
 
 const AddFundCompanyPortfolio = () => {
   const [selectedIndustry, setSelectedIndustry] = useState("");
+  const [industry, setIndustry] = useState([]);
   const [logo, setLogo] = useState({ file: null });
   const [companyName, setCompanyName] = useState([]);
   const [companyDescription, setCompanyDescription] = useState("");
   const [companyURL, setCompanyURL] = useState("");
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+
+  const fetchIndustry = async () => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios({
+        method: "GET",
+        baseURL: `${apiUrl}/api/`,
+        url: `industry`,
+      });
+
+      const sortedIndustry = response.data.industries.sort((a, b) =>
+        a.industry.localeCompare(b.industry)
+      );
+      setIndustry(sortedIndustry);
+    } catch (error) {
+      console.error("Error fetching industries:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchIndustry();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,7 +93,7 @@ const AddFundCompanyPortfolio = () => {
                 <input
                   type="file"
                   name="logo"
-                  accept=".webp"
+                  accept=".png,.jpg,.webp"
                   onChange={(e) =>
                     setLogo({
                       ...logo,
@@ -85,24 +108,17 @@ const AddFundCompanyPortfolio = () => {
               <div className="theme-form">
                 <label>Industry</label>
                 <select
-                  name="industry"
                   value={selectedIndustry}
                   required
-                  onChange={(e) => {
-                    setSelectedIndustry(e.target.value);
-                  }}
+                  name="industry"
+                  onChange={(e) => setSelectedIndustry(e.target.value)}
                 >
                   <option value="">Select a Industry</option>
-                  <option value="Advance Electronic">Advance Electronic</option>
-                  <option value="AI & SAAS">AI & SAAS</option>
-                  <option value="Consumer Tech">Consumer Tech</option>
-                  <option value="Cyber Security & Chip Design">
-                    Cyber Security & Chip Design
-                  </option>
-                  <option value="Electric Vehicle">Electric Vehicle</option>
-                  <option value="Fintech">Fintech</option>
-                  <option value="Spacetech">Spacetech</option>
-                  <option value="Supply Chain Tech">Supply Chain Tech</option>
+                  {industry.map((industry) => (
+                    <option key={industry._id} value={industry._id}>
+                      {industry.industry}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

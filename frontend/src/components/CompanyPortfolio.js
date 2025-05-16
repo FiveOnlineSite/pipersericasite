@@ -4,10 +4,6 @@ import { Modal } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const CompanyPortfolio = () => {
-  const [selectedIndustry, setSelectedIndustry] = useState("INDUSTRIES");
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
   const images = [
     {
       id: 1,
@@ -245,6 +241,12 @@ const CompanyPortfolio = () => {
     },
   ];
 
+  const [selectedIndustry, setSelectedIndustry] = useState("INDUSTRIES");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const [selectedFilter, setSelectedFilter] = useState("");
+
   useEffect(() => {
     if (showModal) {
       document.body.classList.add("modal-open");
@@ -280,6 +282,7 @@ const CompanyPortfolio = () => {
   };
 
   const [companyPortfolio, setCompanyPortfolio] = useState([]);
+  const [industry, setIndustry] = useState([]);
 
   useEffect(() => {
     const fetchCompanyPortfolio = async () => {
@@ -304,6 +307,50 @@ const CompanyPortfolio = () => {
     fetchCompanyPortfolio();
   }, []);
 
+  useEffect(() => {
+    const fetchIndustry = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        // const response = await axios.get("/api/user/allUsers");
+        const response = await axios({
+          method: "GET",
+          baseURL: `${apiUrl}/api/`,
+          url: `industry`,
+        });
+        console.log("industries", response.data.industries);
+        setIndustry(response.data.industries);
+      } catch (error) {
+        console.error("Error fetching industries", error);
+      }
+    };
+
+    fetchIndustry();
+  }, []);
+
+  // Sort by date (latest first)
+  companyPortfolio.forEach((company, index) => {
+    console.log(`Company ${index + 1} industry:`, company.industry);
+  });
+  // console.log("company.industry:", companyPortfolio.industry);
+  console.log("selectedFilter:", selectedFilter);
+
+  const sortedIndustry = industry.sort((a, b) =>
+    a.industry.localeCompare(b.industry)
+  );
+  // Filter by category
+  const filteredCompanies = selectedFilter
+    ? companyPortfolio.filter((company) => {
+        const industry =
+          company.industry && typeof company.industry === "object"
+            ? company.industry.industry?.trim().toLowerCase()
+            : typeof company.industry === "string"
+            ? company.industry.trim().toLowerCase()
+            : "";
+        return industry === selectedFilter.trim().toLowerCase();
+      })
+    : companyPortfolio;
+
   return (
     <>
       <section className="industries-portfolio-section">
@@ -322,7 +369,7 @@ const CompanyPortfolio = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="industries-filter-div">
-                    <select
+                    {/* <select
                       className="form-select"
                       value={selectedIndustry}
                       onChange={(e) => setSelectedIndustry(e.target.value)}
@@ -338,44 +385,51 @@ const CompanyPortfolio = () => {
                           {industry}
                         </option>
                       ))}
+                    </select> */}
+
+                    <select
+                      className="form-select"
+                      value={selectedFilter}
+                      onChange={(e) => setSelectedFilter(e.target.value)}
+                    >
+                      <option value="">INDUSTRIES</option>
+                      {industry &&
+                        industry.map((industry, index) => (
+                          <option key={index} value={industry.industry.trim()}>
+                            {industry.industry}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="industries-div">
                     <div className="row">
-                      {companyPortfolio
-                        .filter(
-                          (company) =>
-                            selectedIndustry === "INDUSTRIES" ||
-                            selectedIndustry === "" ||
-                            company.industry === selectedIndustry
-                        )
-                        .map((company) => (
+                      {filteredCompanies.map((company, index) => (
+                        <div
+                          key={company._id}
+                          className="col-lg-3 col-md-6 col-6"
+                        >
                           <div
-                            key={company._id}
-                            className="col-lg-3 col-md-6 col-6"
+                            className="industires-logo-div"
+                            onClick={() => openModal(company)}
+                            style={{ cursor: "pointer" }}
                           >
-                            <div
-                              className="industires-logo-div"
-                              onClick={() => openModal(company)}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <img
-                                src={
-                                  company.logo?.[0]?.filepath
-                                    ? `${
-                                        process.env.REACT_APP_API_URL
-                                      }/${company.logo[0].filepath.replace(
-                                        /\\/g,
-                                        "/"
-                                      )}`
-                                    : "/default-logo.png"
-                                }
-                                alt="company logo"
-                                className="w-100 portfolio-img"
-                              />
-                              {/* <div className="industries-content">
+                            <img
+                              src={
+                                company.logo?.[0]?.filepath
+                                  ? `${
+                                      process.env.REACT_APP_API_URL
+                                    }/${company.logo[0].filepath.replace(
+                                      /\\/g,
+                                      "/"
+                                    )}`
+                                  : "/default-logo.png"
+                              }
+                              alt="company logo"
+                              className="w-100 portfolio-img"
+                            />
+                            {/* <div className="industries-content">
                               <p className="para small-para">
                                 The Fund seeks to empower early and growth stage
                                 companies in India and Southeast Asia, providing them
@@ -383,9 +437,9 @@ const CompanyPortfolio = () => {
                                 equity.
                               </p>
                             </div> */}
-                            </div>
                           </div>
-                        ))}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

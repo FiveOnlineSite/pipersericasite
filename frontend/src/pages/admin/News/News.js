@@ -106,7 +106,7 @@ const News = () => {
                               "/"
                             )}`} // Assuming filepath contains the path to the image
                             alt={`${news.thumbnail[0].filename}`}
-                            style={{ width: "50px", height: "50px" }}
+                            style={{ width: "100px", height: "100px" }}
                             loading="lazy"
                           />
                         </td>

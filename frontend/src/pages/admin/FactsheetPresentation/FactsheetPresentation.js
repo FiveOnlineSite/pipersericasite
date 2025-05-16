@@ -19,8 +19,13 @@ const FactsheetPresentation = () => {
           baseURL: `${apiUrl}/api/`,
           url: "factsheet-presentation",
         });
-        console.log(response.data.factsheetPresentation);
-        setFactsheetPresentation(response.data.factsheetPresentation);
+        const sortedFund = response.data.factsheetPresentation.sort((a, b) =>
+          a.fund_name.localeCompare(b.fund_name)
+        );
+        setFactsheetPresentation(sortedFund);
+        // console.log(response.data.news);
+        // console.log(response.data.factsheetPresentation);
+        // setFactsheetPresentation(response.data.factsheetPresentation);
       } catch (error) {
         console.error("Error fetching factsheet / presentation:", error);
       }
@@ -99,7 +104,7 @@ const FactsheetPresentation = () => {
                         </td>
                         <td className="table-profile-img text-center">
                           <a
-                            href={factsheetPresentation.file_upload[0].filepath}
+                            href={`${process.env.REACT_APP_API_URL}/${factsheetPresentation.file_upload[0].filepath}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

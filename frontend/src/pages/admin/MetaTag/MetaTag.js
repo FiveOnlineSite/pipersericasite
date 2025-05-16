@@ -76,6 +76,7 @@ const MetaTag = () => {
                     <th>Page</th>
                     <th className="text-center">Meta Title</th>
                     <th className="text-center">Meta Description</th>
+                    <th className="text-center">Meta Keyword</th>
                     <th className="text-center">Edit</th>
                     {/* <th className="text-center">Delete</th> */}
                   </tr>
@@ -90,6 +91,7 @@ const MetaTag = () => {
                         <td className="text-center">
                           {metaTag.metaDescription}
                         </td>
+                        <td className="text-center">{metaTag.metaKeyword}</td>
                         <td className="text-center">
                           <Link
                             to={`/admin/edit/meta-tag/${metaTag._id}`}

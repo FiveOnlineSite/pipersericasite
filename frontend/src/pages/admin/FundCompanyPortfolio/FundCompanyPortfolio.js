@@ -96,11 +96,11 @@ const FundCompanyPortfolio = () => {
                           <img
                             src={`${process.env.REACT_APP_API_URL}/${companies.logo[0].filepath}`} // Assuming filepath contains the path to the image
                             alt={`${companies.logo[0].filename}`}
-                            style={{ width: "50px", height: "50px" }}
+                            style={{ width: "100px", height: "100px" }}
                             loading="lazy"
                           />
                         </td>
-                        <td>{companies.industry}</td>
+                        <td>{companies.industry?.industry}</td>
                         <td className="text-center">
                           {companies.company_name}
                         </td>

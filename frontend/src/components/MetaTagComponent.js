@@ -55,6 +55,20 @@ const MetaTagComponent = () => {
           document.head.appendChild(metaDescription);
         }
 
+        // Update or create meta description
+        let metaKeyword = document.querySelector('meta[name="keyword"]');
+        if (metaKeyword) {
+          metaKeyword.setAttribute(
+            "content",
+            metaTag.metaKeyword || "Piper Serica"
+          );
+        } else {
+          metaKeyword = document.createElement("meta");
+          metaKeyword.name = "keyword";
+          metaKeyword.content = metaTag.metaKeyword || "Piper Serica";
+          document.head.appendChild(metaKeyword);
+        }
+
         // Optional: set meta title (not commonly used)
         let metaTitle = document.querySelector('meta[name="title"]');
         if (metaTitle) {

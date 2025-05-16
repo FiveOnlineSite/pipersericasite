@@ -793,7 +793,7 @@ const FactsheetModal = () => {
       (entry) => entry.option === "Factsheet" && entry.fund_name === fundName
     );
     if (item && item.file_upload?.[0]?.filepath) {
-      return item.file_upload[0].filename;
+      return `${process.env.REACT_APP_API_URL}/${item.file_upload[0].filepath}`;
     }
     return null;
   };
@@ -803,7 +803,7 @@ const FactsheetModal = () => {
       (entry) => entry.option === "Presentation" && entry.fund_name === fundName
     );
     if (item && item.file_upload?.[0]?.filepath) {
-      return item.file_upload[0].filename;
+      return `${process.env.REACT_APP_API_URL}/${item.file_upload[0].filepath}`;
     }
     return null;
   };
@@ -819,19 +819,32 @@ const FactsheetModal = () => {
       const access_token = localStorage.getItem("access_token");
 
       const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.post(`${apiUrl}/api/factsheet-form`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
 
-      const response = await axios.post(
-        `${apiUrl}/api/factsheet-form`,
-        formData,
+      // 💡 Store in Brevo List
+      await axios.post(
+        "https://api.brevo.com/v3/contacts",
+        {
+          email: factsheetEmail,
+          attributes: {
+            FIRSTNAME: factsheetName,
+            FUNDNAME: fundName,
+          },
+          listIds: [Number(process.env.REACT_APP_FACTSHEET_BREVO_LIST_ID)], // replace 123 with your actual Brevo list ID
+          updateEnabled: true,
+        },
         {
           headers: {
+            "api-key": process.env.REACT_APP_BREVO_API_KEY,
             "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
           },
         }
       );
-
-      console.log(response.data.newFactsheetform);
 
       const downloadURL = getFactsheetURL();
       if (!downloadURL) {
@@ -874,18 +887,32 @@ const FactsheetModal = () => {
 
       const apiUrl = process.env.REACT_APP_API_URL;
 
-      const response = await axios.post(
-        `${apiUrl}/api/presentation-form`,
-        formData,
+      await axios.post(`${apiUrl}/api/presentation-form`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+
+      // 💡 Store in Brevo List
+      await axios.post(
+        "https://api.brevo.com/v3/contacts",
+        {
+          email: presentationEmail,
+          attributes: {
+            FIRSTNAME: presentationName,
+            FUNDNAME: fundName,
+          },
+          listIds: [Number(process.env.REACT_APP_FACTSHEET_BREVO_LIST_ID)], // replace 123 with your actual Brevo list ID
+          updateEnabled: true,
+        },
         {
           headers: {
+            "api-key": process.env.REACT_APP_BREVO_API_KEY,
             "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
           },
         }
       );
-
-      console.log(response.data.newFactsheetform);
 
       const downloadURL = getPresentationUrl();
 

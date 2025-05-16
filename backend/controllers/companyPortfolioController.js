@@ -11,18 +11,19 @@ const createCompany = async (req, res) => {
 
       if (!file) {
         return res.status(400).json({
-          message: "A webp image is required for the logo field.",
+          message: "A webp, png, jpg image is required for the logo field.",
         });
       }
       // Check if the file is a pdf
-      const isWebp = (file) => {
+      const isImage = (file) => {
         const extname = path.extname(file.originalname).toLowerCase();
-        return extname === ".webp";
+        return [".webp", ".jpg", ".jpeg", ".png"].includes(extname);
       };
 
-      if (!isWebp(file)) {
+      if (!isImage(file)) {
         return res.status(400).json({
-          message: "Unsupported image type. Please upload a webp image.",
+          message:
+            "Unsupported image type. Please upload a .webp, .jpg, or .png image.",
         });
       }
 
@@ -66,38 +67,38 @@ const updateCompany = async (req, res) => {
       return res.status(404).json({ message: "Company data not found." });
     }
 
-    // let mediaData = existingCompany.logo;
-    let updatedFields = {};
     const file = req.file;
+    const updatedFields = {};
 
     if (file) {
       const fileExtensionName = path.extname(file.originalname).toLowerCase();
 
-      if (fileExtensionName !== ".webp") {
+      const allowedExtensions = [".webp", ".png", ".jpg", ".jpeg"];
+
+      if (!allowedExtensions.includes(fileExtensionName)) {
         return res.status(400).json({
-          message: "Unsupported image type. Please upload a webp image.",
+          message:
+            "Unsupported image type. Please upload a .webp, .png, .jpg, or .jpeg image.",
         });
       }
 
-      let fileData = {
-        filename: req.file.originalname,
-        filepath: req.file.path,
+      const fileData = {
+        filename: file.originalname,
+        filepath: file.path,
       };
 
-      updatedFields.logo = [fileData];
+      updatedFields.logo = fileData;
+    } else {
+      // Preserve the existing logo if no new file uploaded
+      updatedFields.logo = existingCompany.logo;
     }
 
-    // Handle text fields
+    // Handle other fields if present
     if (industry) updatedFields.industry = industry;
     if (company_name) updatedFields.company_name = company_name;
     if (company_description)
       updatedFields.company_description = company_description;
     if (company_url) updatedFields.company_url = company_url;
-
-    // If no new logo uploaded, preserve old one
-    if (!file) {
-      updatedFields.logo = existingCompany.logo;
-    }
 
     const updatedCompany = await CompanyPortfolioModel.findByIdAndUpdate(
       req.params._id,
@@ -138,7 +139,7 @@ const getCompany = async (req, res) => {
 
 const getAllCompany = async (req, res) => {
   try {
-    const company = await CompanyPortfolioModel.find();
+    const company = await CompanyPortfolioModel.find().populate("industry");
 
     if (company.length === 0) {
       return res.status(400).json({

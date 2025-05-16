@@ -62,6 +62,13 @@ const AdminSidebar = () => {
           </li>
 
           <li>
+            <NavLink to="/admin/industry" title="Project">
+              <span className="las la-briefcase"></span>{" "}
+              <span>Company Industry</span>
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink to="/admin/company" title="Project">
               <span className="las la-briefcase"></span>{" "}
               <span>Company Portfolio</span>

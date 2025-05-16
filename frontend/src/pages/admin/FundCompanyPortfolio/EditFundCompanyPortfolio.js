@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditFundCompanyPortfolio = () => {
   const { id } = useParams();
+  const [industry, setIndustry] = useState([]);
   const [company, setCompany] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
 
@@ -21,6 +22,28 @@ const EditFundCompanyPortfolio = () => {
       filepath: "",
     },
   });
+
+  const fetchIndustry = async () => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios({
+        method: "GET",
+        baseURL: `${apiUrl}/api/`,
+        url: `industry`,
+      });
+
+      const sortedIndustry = response.data.industries.sort((a, b) =>
+        a.industry.localeCompare(b.industry)
+      );
+      setIndustry(sortedIndustry);
+    } catch (error) {
+      console.error("Error fetching industries:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchIndustry();
+  }, []);
 
   useEffect(() => {
     const fetchCompany = async () => {
@@ -52,6 +75,7 @@ const EditFundCompanyPortfolio = () => {
             filepath: companyData.logo?.[0]?.filepath || "",
           },
         });
+        setSelectedIndustry(companyData.industry || "");
       } catch (error) {
         console.error("Error fetching company:", error);
       }
@@ -166,22 +190,24 @@ const EditFundCompanyPortfolio = () => {
               <div className="theme-form">
                 <label>Industry</label>
                 <select
-                  value={formData.industry}
+                  value={selectedIndustry}
                   required
                   name="industry"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setSelectedIndustry(value);
+                    setFormData((prev) => ({
+                      ...prev,
+                      industry: value,
+                    }));
+                  }}
                 >
                   <option value="">Select a Industry</option>
-                  <option value="Advance Electronic">Advance Electronic</option>
-                  <option value="AI & SAAS">AI & SAAS</option>
-                  <option value="Consumer Tech">Consumer Tech</option>
-                  <option value="Cyber Security & Chip Design">
-                    Cyber Security & Chip Design
-                  </option>
-                  <option value="Electric Vehicle">Electric Vehicle</option>
-                  <option value="Fintech">Fintech</option>
-                  <option value="Spacetech">Spacetech</option>
-                  <option value="Supply Chain Tech">Supply Chain Tech</option>
+                  {industry.map((industry) => (
+                    <option key={industry._id} value={industry._id}>
+                      {industry.industry}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

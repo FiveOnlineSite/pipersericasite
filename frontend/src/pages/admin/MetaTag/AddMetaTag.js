@@ -7,6 +7,7 @@ const AddMetaTag = () => {
   const [page, setPage] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
+  const [metaKeyword, setMetaKeyword] = useState("");
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -19,7 +20,7 @@ const AddMetaTag = () => {
       formData.append("page", page);
       formData.append("metaTitle", metaTitle);
       formData.append("metaDescription", metaDescription);
-
+      formData.append("metaKeyword", metaKeyword);
       const access_token = localStorage.getItem("access_token");
 
       // Make a POST request to the backend to create a new team
@@ -93,6 +94,17 @@ const AddMetaTag = () => {
                   name="metaDescription"
                   value={metaDescription}
                   onChange={(e) => setMetaDescription(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+              <div className="theme-form">
+                <label>Meta Keyword</label>
+                <input
+                  type="text"
+                  name="metaKeyword"
+                  value={metaKeyword}
+                  onChange={(e) => setMetaKeyword(e.target.value)}
                 />
               </div>
             </div>

@@ -16,6 +16,7 @@ const DashBoard = () => {
   const [presentationFormCount, setPresentationFormCount] = useState("0");
   const [contactCount, setContactCount] = useState("0");
   const [metaTagCount, setMetaTagCount] = useState("0");
+  const [industryCount, setIndustryCount] = useState("0");
 
   useEffect(() => {
     // Fetch service count
@@ -42,6 +43,15 @@ const DashBoard = () => {
       .catch((error) =>
         console.error("Error fetching factsheet presentation count:", error)
       );
+
+    axios
+      .get(`${apiUrl}/api/industry`)
+      .then((response) => {
+        const count = response.data.count;
+
+        setIndustryCount(count); // Update fundNumberCount state with count
+      })
+      .catch((error) => console.error("Error fetching industry count:", error));
 
     axios
       .get(`${apiUrl}/api/company-portfolio`)
@@ -166,6 +176,23 @@ const DashBoard = () => {
                   </span>
                 </h2>
                 <h6>Total Fund Numbers</h6>
+              </div>
+            </NavLink>
+          </div>
+
+          <div className="col-md-3">
+            <NavLink
+              to="/admin/company-portfolio"
+              title="View Company Industry"
+            >
+              <div className="dashboardcard">
+                <h2>
+                  {industryCount}
+                  <span>
+                    <i className="fa fa-eye" aria-hidden="true"></i>
+                  </span>
+                </h2>
+                <h6>Total Company Industry</h6>
               </div>
             </NavLink>
           </div>

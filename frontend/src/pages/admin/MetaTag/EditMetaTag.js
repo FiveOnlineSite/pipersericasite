@@ -13,6 +13,7 @@ const EditMetaTag = () => {
     page: "",
     metaTitle: "",
     metaDescription: "",
+    metaKeyword: "",
   });
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const EditMetaTag = () => {
           page: metaTagData.page,
           metaTitle: metaTagData.metaTitle,
           metaDescription: metaTagData.metaDescription,
+          metaKeyword: metaTagData.metaKeyword,
         });
       } catch (error) {
         console.error("Error fetching meta tag:", error);
@@ -61,7 +63,7 @@ const EditMetaTag = () => {
       formDataToSend.append("page", formData.page);
       formDataToSend.append("metaTitle", formData.metaTitle);
       formDataToSend.append("metaDescription", formData.metaDescription);
-
+      formDataToSend.append("metaKeyword", formData.metaKeyword);
       const access_token = localStorage.getItem("access_token");
       const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -129,6 +131,18 @@ const EditMetaTag = () => {
                     type="text"
                     name="metaDescription"
                     value={formData.metaDescription}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div className="theme-form">
+                  <label>Meta Keyword</label>
+                  <input
+                    type="text"
+                    name="metaKeyword"
+                    value={formData.metaKeyword}
                     onChange={handleChange}
                   />
                 </div>

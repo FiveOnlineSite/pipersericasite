@@ -14,6 +14,10 @@ const MetaTagSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  metaKeyword: {
+    type: String,
+    default: "",
+  },
 });
 
 const MetaTagModel = mongoose.model("Meta Tag", MetaTagSchema);

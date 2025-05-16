@@ -108,7 +108,7 @@ const InvestorLett = () => {
                         </td>
                         <td className="table-profile-img text-center">
                           <a
-                            href={investorLetter.file_upload[0].filepath}
+                            href={`${process.env.REACT_APP_API_URL}/${investorLetter.file_upload[0].filepath}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
