@@ -808,6 +808,10 @@ const FactsheetModal = () => {
     return null;
   };
 
+  const listid = Number(process.env.REACT_APP_FACTSHEET_BREVO_LIST_ID);
+
+  console.log("Brevo List ID:", listid, typeof listid);
+
   const handleFactsheetSubmit = async (e, isPresentation = false) => {
     e.preventDefault();
 
